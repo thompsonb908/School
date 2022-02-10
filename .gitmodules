@@ -13,3 +13,9 @@
 [submodule "OS-Concepts"]
 	path = OS-Concepts
 	url = https://github.com/thompsonb908/OS-Concepts.git
+[submodule "HotelManagementSystem"]
+	path = HotelManagementSystem
+	url = https://github.com/nishap-19/HotelManagementSystem.git
+[submodule "Vision-Construction-Safety"]
+	path = Vision-Construction-Safety
+	url = https://github.com/Orange-Panda/Vision-Construction-Safety.git
