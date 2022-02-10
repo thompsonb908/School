@@ -1,0 +1,95 @@
+\documentclass[a4paper]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{textcomp}
+\usepackage[english]{babel}
+\usepackage{amsmath, amssymb}
+
+
+%figure support
+\usepackage{import}
+\usepackage{xifthen}
+\pdfminorversion=7
+\usepackage{pdfpages}
+\usepackage{transparent}
+\newcommand{\incfig}[1]{%
+	\def\svgwidth{\columnwidth}
+	\import{./figures/}{#1.pdf_tex}
+}
+\graphicspath{ {./figures/} }
+\pdfsuppresswarningpagegroup=1
+
+\begin{document}
+	\title{Study Session 3}
+	\author{Brandon Thompson }
+	\maketitle
+
+	\section{Single cycle}
+
+	\verb|lw $t3, 4($t0)|\\
+	\verb|lw| instruction reads from memory, writes into register.\\
+	Read from \verb|4($t0)| write to \verb|$t3| register file.\\
+	\subsection{State Elements}
+	PC\\
+	Instruction Memeory\\
+	Register File\\
+	Data memory
+	\subsection{Fetch}
+	\begin{enumerate}
+		\item PC State element.
+		\item Instruction memory state element.
+		\item connect PC output to A of instruction memory.
+	\end{enumerate}
+
+	\subsection{Decode}
+	\begin{enumerate}
+		\item Register File
+		\item Output of instruction memory goes to A1(\verb|$t0|), A3(\verb|$t3|),
+			and sign extension for offset (\verb|4|).
+	\end{enumberate}
+
+	\subsection{Execution}
+	\begin{enumberate}
+		\item Add RD1 and sign extension with ALU.
+		\item ALU output is passed to data memory state element.
+		\item Data memory output is passed to register file WD3.
+		\item Enable register writing (WE3 = 1).
+		\item increment PC by 4.
+	\end{enumerate}
+	Decode and Execution overlap.
+	
+	\section{Multi-cycle}
+	Implement \verb|lw $t3, 4($t0)|
+	\subsection{State Elements}
+	PC\\
+	Instruction / Data memory\\
+	Register File
+
+	\subsection{Fetch}
+	\begin{enumerate}
+		\item PC output fed into 2 input multiplexer.
+		\item Output of multiplexer passed to memory (address)
+		\item RD from memory passed to register.
+	\end{enumerate}
+
+	\subsection{Decode}
+	\begin{enumerate}
+		\item From register to A1 of register file (\verb|$t0|),
+			sign-extension (\verb|4|), and A3 (\verb|$t3|).
+	\end{enumerate}
+
+	\subsection{Execution}
+	\begin{enumerate}
+		\item output of Register File saved into register
+		\item Multiplexer with PC and output of register.
+		\item Multiplexer output passed into ALU.
+		\item Another multiplexer chooses between sign-extended value (\verb|4|) and PC counter (4).
+		\item Save into register
+		\item Pass from register into PC multiplexer.
+		\item RD from data memory passed into writing register.
+		\item WE3 set to 1.
+		\item pass from writing register into WD3.
+	\end{enumerate}
+	
+\end{document}

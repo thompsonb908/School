@@ -1,0 +1,66 @@
+\documentclass[a4paper]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{textcomp}
+\usepackage[english]{babel}
+\usepackage{amsmath, amssymb}
+\usepackage{multicol}
+
+%figure support
+\usepackage{import}
+\usepackage{xifthen}
+\pdfminorversion=7
+\usepackage{pdfpages}
+\usepackage{transparent}
+\newcommand{\incfig}[1]{%
+	\def\svgwidth{\columnwidth}
+	\import{./figures/}{#1.pdf_tex}
+}
+\graphicspath{ {./figures/} }
+\pdfsuppresswarningpagegroup=1
+
+\begin{document}
+	\title{EEL4768C.04 Homework 3 Due: 10/20/19}
+	\author{Brandon Thompson 5517}
+	\maketitle
+
+	\begin{enumerate}
+		\item Explain the organization of the classical Von Neuwmann machine and its
+			major functional units.\\
+			\\
+			The Von Neumann architecture is a arithmetic logic unit (ALU), memory unit, 
+			registers, control unit and inputs and outputs. Because the architecture is designed this 
+			way, it allows for instructions and data to be stored in the same memory.
+			\begin{description}
+				\item[Arithmetic Logic Unit (ALU):] Allows for arithmetic operations and
+					logic operations in the system.
+				\item[Memory Unit:] RAM, primary/main memory. Directly accessible to the
+					CPU. Loading from secondary memory into the RAM allows the CPU to
+					operate much quicker.
+				\item[Control Unit:] Controls operation of ALU, memory and input/output
+					devices, telling them how to respond to instructions interpreted from
+					the memory unit.
+				\item[Registers:] High speed storage areas in the CPU. All data must be stored
+					in a register before it can be processed.
+			\end{description}
+			%image for Von Neumann machine.
+		\item Explain and compare the generation of control signals using hardwired
+			or micro-programmed implementation for a control unit.\\
+			\\
+			The \textbf{hardwired control unit} uses logic gates to generate the output. This method is
+			very fast for a limited number of operations. Because of how the hardwired control
+			unit is implemented, making modifications is difficult and if one part is changed
+			the system has to be rewired. Hardwired control units are known as Reduced Instruction
+			Set Computers (RISC).\\
+			The \textbf{Microprogrammed Control Unit} uses microinstructions in the control memory to
+			to produce control signals. Because instructions require memory accesses the speed
+			of operations is slower. Modifications are made by changing the microinstructions.
+			Complex instructions can be broken into multiple smaller instructions. Used in
+			Complex Instruction Set Computers (CISC).\\
+			In general, hardwired control units are more difficult and costly to implement or
+			alter than microprogrammed control units. Despite that, hardwired control units
+			are more specialized and thus faster at what it was designed to do than microprogrammed
+			control units.
+	\end{enumerate}
+\end{document}

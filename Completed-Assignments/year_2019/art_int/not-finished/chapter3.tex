@@ -1,0 +1,47 @@
+\documentclass[a4paper]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{textcomp}
+\usepackage[english]{babel}
+\usepackage{amsmath, amssymb}
+
+
+%figure support
+\usepackage{import}
+\usepackage{xifthen}
+\pdfminorversion=7
+\usepackage{pdfpages}
+\usepackage{transparent}
+\newcommand{\incfig}[1]{%
+	\def\svgwidth{\columnwidth}
+	\import{./figures/}{#1.pdf_tex}
+}
+
+\pdfsuppresswarningpagegroup=1
+
+\begin{document}
+	\author{Brandon Thompson}
+	\title{Chapter 3 Notes}
+	\maketitle
+	\medskip
+	
+	For computers to solve problems in the real world, they need a way to
+	\textit{represent} the real world internally. Computers represent 
+	problems by the variables it uses and the operators applied to
+	those variables. Good representation is vital for the search of solutions.\\
+
+	\begin{description}
+		\item[Semantic Nets] are graphs consisting of nodes that are
+			connected by edges. Nodes represent objects. Links
+			between nodes are relationships between objects.
+			Links are labeled and directional to indicate the nature
+			of the relationship.
+		\item[Frames] are object-oriented representations that can be used
+			to build expert systems. A set of frames are connected together
+			by relations. Each frame describes an instance or a class. Each
+			frame has one or more slots that are assigned slot values, each
+			relationship is expressed by a value in a slot.
+			
+	\end{description}
+\end{document}

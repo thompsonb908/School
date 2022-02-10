@@ -1,0 +1,43 @@
+\documentclass[a4paper]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{textcomp}
+\usepackage[english]{babel}
+\usepackage{amsmath, amssymb}
+
+
+%figure support
+\usepackage{import}
+\usepackage{xifthen}
+\pdfminorversion=7
+\usepackage{pdfpages}
+\usepackage{transparent}
+\newcommand{\incfig}[1]{%
+	\def\svgwidth{\columnwidth}
+	\import{./figures/}{#1.pdf_tex}
+}
+\graphicspath{ {./figures/} }
+\pdfsuppresswarningpagegroup=1
+
+\begin{document}
+	\title{CAP4630.01 Assignment 4 Due 10/15/19}
+	\author{Brandon Thompson 5517}
+	\maketitle
+
+	\begin{enumerate}
+		\item Given the following game tree, please apply \textit{minimax} algorithm with
+			\textit{alpha-beta} pruning to mark what branches can be pruned from the
+			game tree, cross out those leaf nodes that will not be evaluated, and
+			cross out those internal nodes that their scores will not be concluded.
+\begin{figure}[ht]
+	\centering
+	\incfig{minimax_ab_pruning}
+	\caption{Minimax tree with $\alpha-\beta$ pruning}
+	\label{fig:asdf}
+\end{figure}	
+	\end{enumerate}
+	The fourth node from the left $\left( -2 \right) $ does not need to be calculated because
+	$7 > 3$ so that branch should never be reached.
+
+\end{document}

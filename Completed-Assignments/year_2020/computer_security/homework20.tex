@@ -1,0 +1,350 @@
+\documentclass[12pt]{article}
+\usepackage[top=1in, bottom=1in, left=1in, right=1in]{geometry}
+%\usepackage[margin=1in]{geometry}
+\usepackage[onehalfspacing]{setspace}
+%\usepackage[doublespacing]{setspace}
+\usepackage{amsmath, amssymb, amsthm}
+\usepackage{enumerate, enumitem}
+\usepackage{fancyhdr, graphicx, proof, comment, multicol}
+\usepackage[none]{hyphenat} % This command prevents hyphenation of words
+\binoppenalty=\maxdimen % This command and the next prevent in-line equation breaks
+\relpenalty=\maxdimen
+%    Good website with common symbols
+% http://www.artofproblemsolving.com/wiki/index.php/LaTeX%3ASymbols
+%    How to change enumeration using enumitem package
+% http://tex.stackexchange.com/questions/129951/enumerate-tag-using-the-alphabet-instead-of-numbers
+%    Quick post on headers
+% http://timmurphy.org/2010/08/07/headers-and-footers-in-latex-using-fancyhdr/
+%    Info on alignat
+% http://tex.stackexchange.com/questions/229799/align-words-next-to-the-numbering
+% http://tex.stackexchange.com/questions/43102/how-to-subtract-two-equations
+%    Text align left-center-right
+% http://tex.stackexchange.com/questions/55472/how-to-make-text-aligned-left-center-right-in-the-same-line
+\usepackage{microtype} % Modifies spacing between letters and words
+\usepackage{mathpazo} % Modifies font. Optional package.
+\usepackage{mdframed} % Required for boxed problems.
+\usepackage{parskip} % Left justifies new paragraphs.
+\linespread{1.1} 
+\usepackage{makecell}
+
+%figure support
+\usepackage{import}
+\usepackage{xifthen}
+\pdfminorversion=7
+\usepackage{pdfpages}
+\usepackage{transparent}
+\newcommand{\incfig}[1]{%
+	\def\svgwidth{\columnwidth}
+	\import{./figures/}{#1.pdf_tex}
+}
+\graphicspath{ {./figures/} }
+\pdfsuppresswarningpagegroup=1
+
+\newenvironment{problem}[1]
+{\begin{mdframed}[linewidth=0.8pt]
+        \textsc{Problem #1:}
+
+}
+    {\end{mdframed}}
+
+\newenvironment{solution}
+    {\textsc{Solution:}\\}
+    {\newpage}% puts a new page after the solution
+    
+\newenvironment{statement}[1]
+{\begin{mdframed}[linewidth=0.6pt]
+        \textsc{Statement #1:}
+
+}
+    {\end{mdframed}}
+
+%\newenvironment{prf}
+ %   {\textsc{Proof:}\\}
+ %   {\newpage}% puts a new page after the solution
+
+\begin{document}
+% This is the Header
+% Make sure you update this information!!!!
+\noindent
+\textbf{CIS 4367.01} \hfill \textbf{Brandon Thompson} \\
+\normalsize Prof. Elibol \hfill Due Date: 4/27/2020 \\
+
+% This is where you name your homework
+\begin{center}
+\textbf{Homework 20}
+\end{center}
+	\begin{problem}{\#9.1}
+		As was mentioned in Section 9.3, one approach to defeating the tiny fragment attack is to enforce a minimum length of the transport header that must be contained in the first fragment of an IP packet If the first fragment is rejected, all subsequent fragments can be rejected. However, the nature of IP is such that fragments may arrive out of order. Thus, an intermediate fragment may pass through the filter before the initial fragment is rejected. How can this situation be handled?
+	\end{problem}
+	\begin{solution}
+		This is handled when the fragment is reassembled at the destination. Because the first fragment is discarded, it is impossible to reassemble the packet, after some time the packet will be rejected because it is not completed.
+	\end{solution}
+
+
+	\begin{problem}{\#9.4}
+		Table shows a sample of a packet filter firewall ruleset for an imaginary network of IP address that range from 192.168.1.0 to 192.168.1.254. Describe the effect of each rule.
+		\begin{center}
+%		\begin{table}[ht!]
+%			\centering
+%			\caption{caption}
+%			\label{tab:label}
+			\begin{tabular}{|c|c|c|c|c|c|}
+			 \hline
+			 & \textbf{Source Address} & \textbf{Source Port}  & \textbf{Dest Address}  & \textbf{Dest Port} & \textbf{Action}  & 
+			 \hline
+			 1 & Any & Any & 192.168.1.0 &  \textgreater1023 & Allow &
+			 \hline
+			 2 & 192.168.1.1 & Any & Any & Any & Deny &
+			 \hline
+			 3 & Any & Any & 192.168.1.1 & Any & Deny &
+			 \hline
+			 4 & 192.168.1.0 & Any & Any & Any & Allow &
+			 \hline
+			 5 & Any & Any & 192.168.1.2 & SMTP & Allow &
+			 \hline
+			 6 & Any & Any & 192.168.1.3 & HTTP & Allow &
+			 \hline
+			 7 & Any & Any & Any & Any & Deny &
+			 \hline
+			\end{tabular}
+%		\end{table}
+		\end{center}
+	\end{problem}
+	\begin{solution}
+		\begin{enumerate}
+			\item Allows packets that are returned from TCP connections to internal subnet.
+			\item Deny the firewall from transmitting packets with the firewalls source address.
+			\item Deny external packets from from accessing the firewall.
+			\item Allow internal systems to connect to external systems using any external address and protocol.
+			\item Allow external packets to send email because it contains SMTP data.
+			\item Allow external packets to access World Wide Web server because it contains HTTP data.
+			\item Deny packets from outside sources
+		\end{enumerate}
+	\end{solution}
+
+
+	\begin{problem}{\9.5}
+		SMTP is the standard protocol for transferring mail between hosts over TCP. A TCP connection is set up between a user agent and a server program. The server listens on TCP port 25 for incoming connection requests. The user end of the connection is on a TCP port number above 1023. Suppose you wish to build a packet filter rule set allowing inbound and outbound SMTP traffic. You generate the following rule set:
+
+		\begin{center}
+			\begin{tabular}{|c|c|c|c|c|c|c|}
+				\hline
+				\textbf{Rule} &\textbf{Direction} & \textbf{Src Addr} & \textbf{Dest Addr} & \textbf{Protocol} & \textbf{Dest Port} & \textbf{Action} &
+				\hline
+				A & In & External & Internal & TCP & 25 & Permit &
+				\hline
+				B & Out & Internal & External & TCP & \textgreater1023 & Permit &
+				\hline
+				C & Out & Internal & External & TCP & 25 & Permit &
+				\hline
+				D & In & External & Internal & TCP & \textgreater1023 & Permit &
+				\hline
+				E & Either & Any & Any & Any & Any & Deny &
+				\hline
+			\end{tabular}
+		\end{center}
+			\begin{enumerate}[label=\alph*]
+				\item Describe the effect of each rule.
+				\item Your host in this example has IP address 172.16.1.1. Someone tries to send e-mail from a remote host with IP address 192.168.3.4, If successful, this generates an SMTP dialogue between the remote user and the SMTP server on you host consisting of SMTP commands and mail. Additionally, assume that a user on your host tries to send e-mail to the SMTP server on the remote system. Four typical packets are shown:
+					\begin{center}
+						\begin{tabular}{|c|c|c|c|c|c|c|}
+							\hline
+							\textbf{Packet} &\textbf{Direction} & \textbf{Src Addr} & \textbf{Dest Addr} & \textbf{Protocol} & \textbf{Dest Port} & \textbf{Action} &
+							\hline
+							1 & In & 192.168.3.4 & 172.16.1.1 & TCP & 25 & ? &
+							\hline
+							2 & Out & 172.16.1.1 & 192.168.3.4 & TCP 1234 & & ? &
+							\hline
+							3 & Out & 172.16.1.1 & 192.168.3.4 & TCP & 25 & ? &
+							\hline
+							4 & In & 192.168.3.4 & 172.16.1.1 & TCP & 1357 & ? &
+							\hline
+						\end{tabular}
+					\end{center}
+					Indicate which packets are permitted or denied and which rule is used in each case.
+				\item Someone from the outside world (10.1.2.3) attempts to open a connection from port 5150 on a remote host to the Web proxy server on port 8080 on one of your local hosts (172.16.3.4) in order to carry out an attack. Typical packets are as follows:
+					\begin{center}
+						\begin{tabular}{|c|c|c|c|c|c|c|}
+							\hline
+							\textbf{Packet} &\textbf{Direction} & \textbf{Src Addr} & \textbf{Dest Addr} & \textbf{Protocol} & \textbf{Dest Port} & \textbf{Action} &
+							\hline
+							5 & In & 10.1.2.3 & 172.16.3.4 & TCP & 8080 & ?&
+							\hline
+							6 & Out & 172.16.3.4 & 10.1.2.3 & TCP & 5150 & ? &
+							\hline
+						\end{tabular}
+					\end{center}
+					Will the attack succeed? Give details.
+			\end{enumerate}
+	\end{problem}
+	\begin{solution}
+		\begin{enumerate}[label=\alph*]
+			\item Description for each rule:
+				\begin{enumerate}[label=\Alph*]
+					\item Remote host receives email from external serer.
+					\item External server receiving email from remote host.
+					\item External server transmit the outgoing email to remote host.
+					\item Remote host transmit the outgoing email to external server.
+					\item Deny all other.
+				\end{enumerate}
+			\item Indicate each packet action:
+				\begin{center}
+					\begin{tabular}{|c|c|c|c|c|c|c|}	
+						\hline
+						\textbf{Packet} &\textbf{Direction} & \textbf{Src Addr} & \textbf{Dest Addr} & \textbf{Protocol} & \textbf{Dest Port} & \textbf{Action} &
+						\hline
+						1 & In & 192.168.3.4 & 172.16.1.1 & TCP & 25 & Permit (Rule A) &
+						\hline
+						2 & Out & 172.16.1.1 & 192.168.3.4 & TCP 1234 & & Permit (Rule B) &
+						\hline
+						3 & Out & 172.16.1.1 & 192.168.3.4 & TCP & 25 & Permit (Rule C) &
+						\hline
+						4 & In & 192.168.3.4 & 172.16.1.1 & TCP & 1357 & Permit (Rule D) &
+						\hline
+					\end{tabular}
+				\end{center}
+			\item The attack of packets 5 and 6 could succeed because the original filter set rule B and rule D permits all connections ends with transmission ports of above 1023.
+
+				Rule B will allow packet 5 and rule D will allow packet 6.
+		\end{enumerate}
+	\end{solution}
+
+
+	\begin{problem}{\#9.7}
+		 hacker uses port 25 as the client port on his or her end to attempt to open a connection to your Web proxy server.
+		 \begin{enumerate}[label=\alph*]
+		 	\item The following packets might be generated:
+				\begin{center}
+					\begin{tabular}{|c|c|c|c|c|c|c|c|}	
+						\hline
+						\textbf{Packet} &\textbf{Direction} & \makecell[b]{\textbf{Src}\\\textbf{Addr}} & \makecell[b]{\textbf{Dest}\\\texbf{Addr}} & \textbf{Protocol} & \makecell[b]{\textbf{Src}\\\textbf{Port}} & \makecell{\textbf{Dest}\\\textbf{Port}} & \textbf{Action} &
+						\hline
+						7 & In & 10.1.2.3 & 172.16.3.4 & TCP & 25 & 8080 & ? &
+						\hline
+						2 & Out & 172.16.3.4 & 10.1.2.3 & TCP & 8080 & 25 & ? &
+						\hline
+					\end{tabular}
+				\end{center}
+				Explain why this attack will succeed, using the rule set of the preceding problem.
+			\item When a TCP connection is initiated, the ACK bit in the TCP header is not set. Subsequently, all TCP headers sent over the TCP connection have the ACK bit set. Use this information to modify the rule set of the preceding problem to prevent the attack just described.
+		 \end{enumerate}
+	\end{problem}
+	\begin{solution}
+		\begin{enumerate}[label=\alph*]
+			\item Reason this attack succeeds:
+
+				Rule D allows outbound SMTP connection for packet 7.
+				Rule C allows outbound SMTP connection for packet 8.
+			\item Prevent this attack:
+			
+				{\centering%\begin{center}
+					\begin{tabular}{|c|c|c|c|c|c|c|c|c|}
+						\hline
+						\makecell[b]{\textbf{Rule}} & \makecell[b]{\textbf{Direction}} & \makecell[b]{\textbf{Src} \\ \textbf{Addr}} & \makecell[b]{\textbf{Dst}\\\textbf{Addr}} & \textbf{Protocol} & \makecell[b]{\textbf{Src}\\\textbf{Port}} &\makecell[b]{\textbf{Dst}\\\textbf{Port}} & \makecell[b]{\textbf{ACK}\\\textbf{set}} & \textbf{Action} &
+						\hline
+						A & In & External & Internal & TCP & \textgreater1023 &25 & Yes & Permit &
+						\hline
+						B & Out & Internal & External & TCP & 25 &\textgreater1023 & Yes & Permit &
+						\hline
+						C & Out & External & Internal & TCP & \textgreater1023 & 25 & Any & Permit &
+						\hline
+						D & In & Internal & External & TCP & 25 & \textgreater1023 & Yes & Permit &
+						\hline
+						E & In & Any & Any & TCP & Any & Any & Any & Deny &
+						\hline
+					\end{tabular}
+			} %\end{center}
+		\end{enumerate}
+	\end{solution}
+
+
+	\begin{problem}{\#9.8}
+		Section 9.6 lists five general methods used by a NIPS device to detect an attack. List some of the pros and cons of each method.
+	\end{problem}
+	\begin{solution}
+		\begin{itemize}
+			\item Pattern matching
+				\begin{itemize}
+					\item Advantages
+						\begin{itemize}
+							\item Identifies the attacks.
+							\item Provides particular information for analysis and response of the attack.
+						\end{itemize}
+					\item Disadvantages
+						\begin{itemize}
+							\item Produces false positive
+							\item Frequent signature table updates
+							\item Attacker can modify attack to avoid detection
+						\end{itemize}
+				\end{itemize}
+			\item Stateful matching
+				\begin{itemize}
+					\item Advantages
+						\begin{itemize}
+							\item Identifies attacks
+							\item Detects signature of spread packets
+							\item Provides information for analysis and response
+						\end{itemize}
+					\item Disadvantages
+						\begin{itemize}
+							\item Produces false positives
+							\item Frequent updates to signature table
+							\item Attacker can modify attack to avoid detection
+						\end{itemize}
+				\end{itemize}
+			\item Protocol Anomaly
+				\begin{itemize}
+					\item Advantages
+						\begin{itemize}
+							\item Identifies attacks not including the signature
+							\item Shrinks false positive with good protocols.
+						\end{itemize}
+					\item Disadvantages
+						\begin{itemize}
+							\item Produces false positives with complex protocols
+							\item Larger overhead.
+						\end{itemize}
+				\end{itemize}
+			\item Traffic Anomaly
+				\begin{itemize}
+					\item Advantages
+						\begin{itemize}
+							\item Identifies unknown attacks and DoS floods
+						\end{itemize}
+					\item Disadvantages
+						\begin{itemize}
+							\item Difficult to tune properly
+							\item Should understand normal traffic clearly
+						\end{itemize}
+				\end{itemize}
+			\item Statistical Anomaly
+				\begin{itemize}
+					\item Advantages
+						\begin{itemize}
+							\item %Identifies unknown attacks and DoS floods
+						\end{itemize}
+					\item Disadvantages
+						\begin{itemize}
+							\item Takes time to gather the statistical data necessary
+						\end{itemize}
+				\end{itemize}
+		\end{itemize}
+	\end{solution}
+
+
+	\begin{problem}{\#9.13}
+		Explain the strengths and weaknesses of each of the following firewall deployment scenarios in defending servers, desktop machines, and laptops against network threats.
+		\begin{enumerate}[label=\alph*]
+			\item A firewall at the network perimeter.
+			\item Firewalls on every end host machine.
+			\item A network perimeter firewall and firewalls on every host machine.
+		\end{enumerate}
+	\end{problem}
+	\begin{solution}
+		\begin{enumerate}[label=\alph*]
+			\item A perimeter firewall provides access control and protection for DMZ systems that need external connectivity. Policy cannot be to strict or firewall will cut off access to necessary functions.
+			\item Firewall can have more strict policies to better protect specific systems.
+			\item This is the best option to ensure that systems are as protected as possible.
+		\end{enumerate}
+	\end{solution}
+\end{document}

@@ -1,0 +1,100 @@
+\documentclass[12pt]{article}
+\usepackage[top=1in, bottom=1in, left=1in, right=1in]{geometry}
+%\usepackage[margin=1in]{geometry}
+\usepackage[onehalfspacing]{setspace}
+%\usepackage[doublespacing]{setspace}
+\usepackage{amsmath, amssymb, amsthm}
+\usepackage{enumerate, enumitem}
+\usepackage{fancyhdr, graphicx, proof, comment, multicol}
+\usepackage[none]{hyphenat} % This command prevents hyphenation of words
+\binoppenalty=\maxdimen % This command and the next prevent in-line equation breaks
+\relpenalty=\maxdimen
+%    Good website with common symbols
+% http://www.artofproblemsolving.com/wiki/index.php/LaTeX%3ASymbols
+%    How to change enumeration using enumitem package
+% http://tex.stackexchange.com/questions/129951/enumerate-tag-using-the-alphabet-instead-of-numbers
+%    Quick post on headers
+% http://timmurphy.org/2010/08/07/headers-and-footers-in-latex-using-fancyhdr/
+%    Info on alignat
+% http://tex.stackexchange.com/questions/229799/align-words-next-to-the-numbering
+% http://tex.stackexchange.com/questions/43102/how-to-subtract-two-equations
+%    Text align left-center-right
+% http://tex.stackexchange.com/questions/55472/how-to-make-text-aligned-left-center-right-in-the-same-line
+\usepackage{microtype} % Modifies spacing between letters and words
+\usepackage{mathpazo} % Modifies font. Optional package.
+\usepackage{mdframed} % Required for boxed problems.
+%\usepackage{parskip} % Left justifies new paragraphs.
+\linespread{1.1} 
+
+
+\usepackage{cite}
+%figure support
+\usepackage{import}
+\usepackage{xifthen}
+\pdfminorversion=7
+\usepackage{pdfpages}
+\usepackage{transparent}
+\newcommand{\incfig}[1]{%
+	\def\svgwidth{\columnwidth}
+	\import{./figures/}{#1.pdf_tex}
+}
+\graphicspath{ {./figures/} }
+\pdfsuppresswarningpagegroup=1
+
+\newenvironment{problem}[1]
+{\begin{mdframed}[linewidth=0.8pt]
+        \textsc{Problem #1:}
+
+}
+    {\end{mdframed}}
+
+\newenvironment{solution}
+    {\textsc{Solution:}\\}
+    {\newpage}% puts a new page after the solution
+    
+\newenvironment{statement}[1]
+{\begin{mdframed}[linewidth=0.6pt]
+        \textsc{Statement #1:}
+
+}
+    {\end{mdframed}}
+
+%\newenvironment{prf}
+ %   {\textsc{Proof:}\\}
+ %   {\newpage}% puts a new page after the solution
+
+\begin{document}
+% This is the Header
+% Make sure you update this information!!!!
+\noindent
+\textbf{IDS2144.01} \hfill \textbf{Brandon Thompson} \\
+\normalsize Prof. LeFrancois \hfill Due Date: 5/18/2020 \\
+
+% This is where you name your homework
+\begin{center}
+\textbf{Laws and Technology}
+\end{center}
+\begin{enumerate}
+	\item Provide a brief summary regarding information privacy law or data protection laws in the United States and in the European Union. (3 to 5 sentences)
+
+		The US does not have a dedicated federal law to protect privacy
+		and data. Instead, the Federal Trade Commission Act and many other
+		laws enables the FTC to protect consumers from companies that do
+		not follow their privacy statements.~\cite{data_us} In the European
+		Union, there
+		is a General Data Protection Regulation that gives rules that
+		companies must follow when handling users data.~\cite{data_eu}
+		
+	\item Explain what the 1st and 4th Amendments to the US Constitution have to do with your expectation of privacy in the United States. (5 to 8 sentences)
+
+		The 1st Amendment relates to privacy because it protects the right of free speech, and stops the government from making laws that violate the freedoms listed in the Amendment. Amendment 4 states that the government cannot take things that belong to a citizen without just cause. If the data stored on our computers is considered out property, then the government should not be allowed to access our data without just cause. This can be expanded upon with the idea that things that we say are considered our property as well. Harper states that "Communications belong to to parties between whom they pass." ~\cite{harper} Meaning the government cannot wiretap phone lines and listen on communication.
+
+	\item Explain how the Supreme Court ruling in Carpenter v. United States effects digital privacy in the US. (5 to 8 sentences)
+
+		The ruling for Carpenter v United States was that the government needs a warrant to access cell site location information from mobile phones. They leaned this way because cell phones are becoming more of a necessity than a luxury and people are not voluntarily giving out their location, it is needed for the phone to work. Previously the Supreme court has ruled that law enforcement does not need a warrant to access information given to a third party. According to the Supreme Court CSLI data is a different category of information that would give law enforcement accurate movements of a majority of Americans' movements. \cite{wired} This would  essentially put a GPS tracker on everyone, which was considered a violation of 4th Amendment rights previously. If the location data that is collected by third party companies is protected under the 4th Amendment then other data also collected by third parties could be considered protected as well, like browsing information. 
+
+\end{enumerate}
+
+\bibliography{1_bib}{}
+\bibliographystyle{plain}
+\end{document}

@@ -1,0 +1,31 @@
+\documentclass{standalone}
+\usepackage{tikz} % Import the tikz package
+\usetikzlibrary{automata} % Import library for drawing automata
+\usetikzlibrary{positioning} % ...positioning nodes
+\usetikzlibrary{arrows} % ...customizing arrows
+\tikzset{node distance=2.5cm,
+    every state/.style={
+        semithick,
+        fill=gray!10},
+    initial text={},
+    double distance=2pt,
+    every edge/.style={
+        draw,
+        ->,>=stealth',
+        auto,
+        semithick}}
+\let\epsilon\varepsilon
+\begin{document}
+    \begin{tikzpicture}
+        \node[state,initial, accepting] (1) at (0,0) {\tt 1};
+        \node[state] (2) at (2.5,0) {\tt 2};
+        \node[state, accepting] (3) at (5,0) {\tt 3};
+
+        \draw (1) edge[loop above] node {$a^*$} (1);
+        \draw (1) edge[] node {$(ba+a)^*$} (2);
+        
+        \draw (2) edge[] node {$b+\Lambda$} (3);
+        
+        \draw (3) edge[loop above] node {$a^*$} (3);
+    \end{tikzpicture}
+\end{document}

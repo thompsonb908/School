@@ -1,0 +1,89 @@
+\documentclass[a4paper]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{textcomp}
+\usepackage[english]{babel}
+\usepackage{amsmath, amssymb}
+\usepackage{tikz}
+
+%figure support
+\usepackage{import}
+\usepackage{xifthen}
+\pdfminorversion=7
+\usepackage{pdfpages}
+\usepackage{transparent}
+\newcommand{\incfig}[1]{%
+	\def\svgwidth{\columnwidth}
+	\import{./figures/}{#1.pdf_tex}
+}
+
+\pdfsuppresswarningpagegroup=1
+
+\begin{document}
+	\title{Chapter 5: Advanced Search}
+	\maketitle
+	\begin{description}
+		\item[meta-heuristic] is a heuristic to guide another heuristic, can be used to avoid local
+			optimal solution in favor of global optimal solution.
+		\item[meta-*] something to describe something else.
+	\end{description}
+	\section{Constraint Satisfaction Search}
+	\subsection{The Eight-Queens Problem}
+	\begin{itemize}
+		\item 8 queens must be placed on a chess board in a way that no two queens are on the same
+			row, column or diagonal.
+		\item Columns are labeled $a \to h$.
+		\item Rows are labeled $1\to 8$.
+	\end{itemize}
+	Brute force search is a search tree with 8 levels deep. The first level has a branching factor of 64.
+	The second level has a branching factor of 63. The 8th level has a branching factor of 57.
+	This is a very wide tree.\\
+	The branching can be significantly reduced by knowing that each column and row can only have one queen.
+	This reduces the branching factor to 8 for the first level and 7 for the second level, \ldots\\
+	If we apply each of the constraints the search tree is further reduced by removing future choices
+	that would not fit the constraints. This is known as \textbf{forward checking}.
+
+	\section{Forward Checking}
+	Can significantly improve the performance of solutions for CSP's. As each queen is placed on the board
+	a forward checking mechanism is used to delete a set of impossible future choices. If placing a queen
+	removes all future choices, the system will backtrack.\\
+	A problem with chronological backtracking in the 8-queens problem is that the forward checking might
+	backtrack moves that are not leading to errors.
+	
+	\section{Most-Constrained Variables}
+	Heuristic for further performance improvement. At each stage of the search, work with the variable
+	that has the least amount of possibilities. We can assign a value of 1-8 to variables  $a$-$h$ to
+	represent the row (1-8) and column ($a$-$h$) of each queen. If the initial state is
+	$a=1, b=3, c=5$, this leaves 3 choices for $d$, 3 choices for $e$, 1 choice for $f$, 3 choices for $g$
+	and 4 choices for $h$. Then the next move should be in column  $f$ because it has the least possible
+	choices.
+	
+	% insert image for chess board. Slide 17, chapter 5
+	\begin{figure}[ht]
+		\centering
+		\incfig{cboard}
+		\caption{$f$ is the most constrained variable.}
+		\label{fig:cboard}
+	\end{figure}	
+
+
+	\section{Heuristic Repair}
+	Used to improve the performance of finding solutions by generating a possible solution, either
+	randomly or heuristic based, and altering the possible solution until it reaches the goal.\\
+	In the eight-queens problem, can be done by using a mini-conflicts heuristic. To move from
+	one state to a state that is likely closer to the goal, select a queen that has a conflict with 
+	another queen, move this queen to a square where is conflicts with as few queens as possible, repeat
+	this process until the goal is found.\\
+	A starting configuration with only one queen per row and column.\\
+	%include figures between slides 22 and 25
+	
+	This method can be expanded to solve the $n$-queens problem, the 1,000,000-queens problem can be
+	solved in about 50 steps where traditional search trees would involve branching factors of $10^{12}$.
+	
+	\section{Local Search and Meta-heuristics}
+	
+	\section{Simulated Annealing}
+
+
+\end{document}

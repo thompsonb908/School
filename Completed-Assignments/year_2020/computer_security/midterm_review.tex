@@ -1,0 +1,293 @@
+\documentclass[12pt]{article}
+\usepackage[top=1in, bottom=1in, left=1in, right=1in]{geometry}
+%\usepackage[margin=1in]{geometry}
+\usepackage[onehalfspacing]{setspace}
+%\usepackage[doublespacing]{setspace}
+\usepackage{amsmath, amssymb, amsthm}
+\usepackage{enumerate, enumitem}
+\usepackage{fancyhdr, graphicx, proof, comment, multicol}
+\usepackage[none]{hyphenat} % This command prevents hyphenation of words
+\binoppenalty=\maxdimen % This command and the next prevent in-line equation breaks
+\relpenalty=\maxdimen
+%    Good website with common symbols
+% http://www.artofproblemsolving.com/wiki/index.php/LaTeX%3ASymbols
+%    How to change enumeration using enumitem package
+% http://tex.stackexchange.com/questions/129951/enumerate-tag-using-the-alphabet-instead-of-numbers
+%    Quick post on headers
+% http://timmurphy.org/2010/08/07/headers-and-footers-in-latex-using-fancyhdr/
+%    Info on alignat
+% http://tex.stackexchange.com/questions/229799/align-words-next-to-the-numbering
+% http://tex.stackexchange.com/questions/43102/how-to-subtract-two-equations
+%    Text align left-center-right
+% http://tex.stackexchange.com/questions/55472/how-to-make-text-aligned-left-center-right-in-the-same-line
+\usepackage{microtype} % Modifies spacing between letters and words
+\usepackage{mathpazo} % Modifies font. Optional package.
+\usepackage{mdframed} % Required for boxed problems.
+\usepackage{parskip} % Left justifies new paragraphs.
+\linespread{1.1} 
+
+
+%figure support
+\usepackage{import}
+\usepackage{xifthen}
+\pdfminorversion=7
+\usepackage{pdfpages}
+\usepackage{transparent}
+\newcommand{\incfig}[1]{%
+	\def\svgwidth{\columnwidth}
+	\import{./figures/}{#1.pdf_tex}
+}
+\graphicspath{ {./figures/} }
+\pdfsuppresswarningpagegroup=1
+
+\newenvironment{problem}[1]
+{\begin{mdframed}[linewidth=0.8pt]
+        \textsc{Problem #1:}
+
+}
+    {\end{mdframed}}
+
+\newenvironment{solution}
+    {\textsc{Solution:}\\}
+    {\newpage}% puts a new page after the solution
+    
+\newenvironment{statement}[1]
+{\begin{mdframed}[linewidth=0.6pt]
+        \textsc{Statement #1:}
+
+}
+    {\end{mdframed}}
+
+%\newenvironment{prf}
+ %   {\textsc{Proof:}\\}
+ %   {\newpage}% puts a new page after the solution
+
+\begin{document}
+% This is the Header
+% Make sure you update this information!!!!
+\noindent
+\textbf{CIS4630} \hfill \textbf{Brandon Thompson} \\
+\normalsize Prof. Elibol \hfill Due Date: -- \\
+
+% This is where you name your homework
+\begin{center}
+\textbf{Quiz Review}
+\end{center}
+\begin{enumerate}[label=Q1.\arabic*]
+		\item Define computer security.
+			\begin{itemize}
+				\item Protection of a system to preserve CIA of resources (hardware, software, firmware, information/data, telecommunications).
+			\end{itemize}
+		\item What is the difference between passive and active security threats.
+			\begin{itemize}
+				\item Passive attack monitor traffic and listen to data transmissions to gain information about the system.
+				\item Active attacks try and gain access to system resources or modify data in transit.
+			\end{itemize}
+		\item List and define categories of passive and active network security attacks.
+			\begin{itemize}
+				\item Passive
+					\begin{itemize}
+						\item Eavesdropping: monitoring traffic and location of user.
+						\item Collecting private data: Find contents of messages.
+					\end{itemize}
+				\item Active
+					\begin{itemize}
+						\item Replay: resend old packet to gain access.
+						\item Forgery: Faking user access to gain entry to the system.
+						\item Modification of Message: Modify transmitted messages to affect data integrity.
+						\item Denial of service: interrupting service.
+					\end{itemize}
+			\end{itemize}
+
+		\item List fundamental security design principals.
+			\begin{itemize}
+				\item Economy of mechanism: Design is simple.
+				\item Fail safe defaults: verify access of subject.
+				\item Open Design: Design of security system is easily available to all the viewers and users, by hiding credentials and restricting the access of the object within the system.
+				\item Separation of privilege: restrict user access.
+				\item Least Privilege: Only minimum amount of access is given to users.
+				\item Least Common Mechanism: Restricts sharing of objects to reduce unnecessary communication between the users.
+				\item Psychological Acceptance: security should not impede work flow while protecting system resources.
+				\item Isolation: System resources should be separated from user resources.
+				\item Encapsulation: Wrapping data and the program that works on that data and isolating from other user programs.
+				\item Modularity: Design and implementation of security mechanisms or functions in a modular fashion.
+				\item Layering: Building multiple layers of protection mechanisms.
+				\item Least Astonishment: user friendly, user should understand security provided by the system.
+			\end{itemize}
+		\item Explain the difference between an attack surface and an attack tree.
+			\begin{itemize}
+				\item Attack surface: Reachable and exploitable vulnerabilities in a system.
+				\item Attack Tree: Branching hierarchical data structure that represents a set of potential techniques for exploring security vulnerabilities.
+			\end{itemize}
+	\end{enumerate}
+	\begin{enumerate}[label=Q2.\arabic*]
+		\item What are the essential ingredients of a symmetric cipher?
+			\begin{itemize}
+				\item Plaintext
+				\item Encryption Algorithm
+				\item Secret Key
+				\item Ciphertext
+				\item Decryption Algorithm
+			\end{itemize}
+		\item How many keys are required for 2 people to communicate via a symmetric cipher?
+			\begin{itemize}
+				\item One key, symmetric encryption uses a single secret key for sender and receiver.
+			\end{itemize}
+		\item What are the two principal requirements for the secure use of symmetric encryption?
+			\begin{itemize}
+				\item Strong Encryption Algorithm: Opponent should not be able to decrypt ciphertext or discover key even if they are in possession of both ciphertext and plaintext.
+				\item Sender and receiver must have copies of the secret key obtained and stored in a secure manner.
+			\end{itemize}
+		\item List 3 approaches to message authentication.
+			\begin{itemize}
+				\item Message Authentication Code.
+				\item One way hash function: public key encryption and digital signature.
+				\item Secure hash function.
+			\end{itemize}
+		\item What is a message authentication code?
+			\begin{itemize}
+				\item  Use of secret key to generate a small block of data, message authentication (MAX) appended to the message.
+			\end{itemize}
+		\item Briefly describe the three schemes illustrated in the figure below.
+			%insert fig
+			\begin{itemize}
+				\item  Message plus MAC are transmitted, recipient calculates MAC for themselves and checks against the transmitted MAC.
+			\end{itemize}
+		\item What properties must a hash function have to be useful for message authentication.
+			\begin{itemize}
+				\item Takes variable length message and makes a fixed length hash value.
+				\item Hard to get the original message from the hash.
+				\item Easy to compute the hash from the message.
+				\item Hard to find 2 hashes with 2 different messages.
+			\end{itemize}
+		\item What are the principal ingredients of a public-key cryptosystem?
+			\begin{itemize}
+				\item Plaintext
+				\item Encryption Algorithm
+				\item Public and Private key
+				\item Ciphertext
+				\item Decryption Algorithm
+			\end{itemize}
+		\item List and briefly define three uses of a public-key cryptosystem
+			\begin{itemize}
+				\item Encryption and decryption: sender encrypts a message with the recipients public key.
+				\item Digital Signature: Sender signs a message with its private key.
+				\item Key exchange: Two sides cooperate to exchange a session key.
+			\end{itemize}
+		\item What is the difference between a private key and a secret key?
+			\begin{itemize}
+				\item Secret key = symmetric encryption
+				\item Private key = asymmetric encryption
+			\end{itemize}
+		\item What is a digital signature?
+			\begin{itemize}
+				\item Mechanism for authenticating a message. A method to ensure message authentication and integrity.
+			\end{itemize}
+		\item What is a public key certificate?
+			\begin{itemize}
+				\item Used to validate the public key of a user. (ID of user, public key of user, digital signature of the Certificate Authority).
+			\end{itemize}
+		\item How can public-key encryption be used to distribute a secret key for symmetric encryption?
+			\begin{itemize}
+				\item Digital Envelope (see figure below)
+					\begin{itemize}
+						\item Prepare a message.
+						\item Generate a random symmetric key.
+						\item Encrypt the message with the symmetric key.
+						\item Encrypt symmetric key with receivers public key.
+						\item Attach the encrypted symmetric key to the encrypted message and send to receiver.
+					\end{itemize}
+			\end{itemize}
+			%figure for Digital Envelope
+	\end{enumerate}
+	\begin{enumerate}[label=Q3.\arabic*]
+		\item In general terms, what are 4 means of authenticating a user's identity?
+			\begin{itemize}
+				\item \textit{Something the individual knows:} Password, PIN, answers to security questions.
+				\item \textit{Something the individual possesses:} (Token authentication) Key-card, smart card, physical keys.
+				\item \textit{Something the individual is (static biometric):} Fingerprint, retina, face.
+				\item \textit{Something the individual does (dynamic biometric):} Voice, handwriting, typing rhythm.
+			\end{itemize}
+		\item List and briefly define the principal threats to the secrecy of passwords.
+			\begin{itemize}
+				\item \textit{Offline Dictionary Attack:} Attacker has access to system password file and compares hashes in the file to hashes of common passwords.
+				\item \textit{Specific Account attack:} Brute force a specific account.
+				\item \textit{Password guessing against a single user:} Attacker gains info about the account holder and password policies to better guess the password.
+				\item \textit{Popular Password attack:} Use a popular password and check against multiple user ID's.
+				\item \textit{Workstation Hijacking:} The attacker waits until a logged-in workstation is unattended.
+				\item \textit{Exploiting user mistakes:} Strict policies make it more likely that a user will write down a password. Attacker tricks a user into giving up their password.
+				\item \textit{Exploiting multiple passwords using electronic monitoring:} If a password is communicated across a network to log on to a remote system, it is vulnerable to eavesdropping.
+			\end{itemize}
+		\item List and briefly describe four common techniques for selecting or assigning passwords.
+			\begin{itemize}
+				\item User education: Show the user what a strong password is.
+				\item Computer generated passwords: Long, random passwords are not easy to crack.
+				\item Reactive password checking: System runs a password cracker and notifies user if it was able to crack their password.
+				\item Proactive password checking: The user chooses his password based on rules given by the system.
+			\end{itemize}
+		\item Explain the difference between a simple memory card and a smart memory card.
+			\begin{itemize}
+				\item Memory Card: Stores but does not process data.
+				\item Smart card: Has micro-processor, different types of memory, I/O ports, etc.
+			\end{itemize}
+		\item List and briefly describe the principal physical characteristics used for biometric identification.
+			\begin{itemize}
+				\item Facial characteristics
+				\item Fingerprints
+				\item Hand Geometry
+				\item Retinal Pattern
+				\item Iris
+				\item Signature
+				\item Voice
+			\end{itemize}
+		\item In the context of biometric user authentication explain the terms: enrollment, identification, and verification.
+			\begin{itemize}
+				\item Enrollment: Users have to be created to have access.
+				\item Identification: The individual uses biometric sensor but presents no additional information.
+				\item Verification: The user enters a PIN and also uses a biometric sensor.
+			\end{itemize}
+		\item Define the terms false match rate and false non-match rate, and explain the user threshold in relationship to these two rates.
+			\begin{itemize}
+				\item False match rate: Percent of invalid inputs that are incorrectly accepted.
+				\item False non-match rate: Percent of valid inputs that are incorrectly rejected.
+				\item By moving the threshold, the probabilities can be altered. An decrease in false match rate means an increase in false non-match rate, and vice versa.
+			\end{itemize}
+		\item Describe the general concept of a challenge-response protocol.
+			\begin{itemize}
+				\item Family of protocols in which one party presents a question and another party must provide a valid answer to be authenticated.
+			\end{itemize}
+	\end{enumerate}
+	\begin{enumerate}[lable=Q4.\arabic*]
+		\item What is the difference between authentication and authorization?
+			\begin{itemize}
+				\item \textit{Authentication:} Verifying who you are, confirming your own identity.
+				\item \textit{Authorization:} Verify what you have access to, granting access to the system.
+			\end{itemize}
+		\item Define the difference between DAC and MAC.
+			\begin{itemize}
+				\item Discretionary Access Control (DAC), owner determines access rights.
+				\item Mandatory Access Control (MAC), system provides access to the resource based on the clearance level of the user.
+			\end{itemize}
+		\item How does RBAC relate to DAC and MAC?
+			\begin{itemize}
+				\item  All three are not mutually exclusive and the access control mechanism can employ all policies to cover different resources.
+				\item RBAC may use discretionary or mandatory mechanism for user roles.
+				\item RBAC needs to have role access to an object, mandatory needs a tag.
+			\end{itemize}
+		\item List and define three classes of subject in an access control system:
+			\begin{itemize}
+				\item Owner
+					\begin{itemize}
+						\item 
+					\end{itemize}
+				\item Group
+					\begin{itemize}
+						\item 
+					\end{itemize}
+				\item World
+					\begin{itemize}
+						\item 
+					\end{itemize}
+			\end{itemize}
+	\end{enumerate}
+\end{document}

@@ -1,0 +1,83 @@
+\section{Regular Expressions}
+Alphabets, languages, and \textquote{letters} can all be converted to another language using the Kleene closure property.
+\begin{align*}
+    \Sigma&=\{x\} & \Sigma^*&= \{\Lambda,x,xx,xxx,\ldots\}\\
+    \text{or}\\
+    \{x\}^*&=\{\Lambda,x,xx,xxx,\ldots\} & &\\
+    \\
+    S&=\{xx,xxx\}   &   S^*&=\{\Lambda,xx,xxx,xxxx,\ldots\}\\
+    \text{or}\\
+    \{xx,xxx\}^*&= \{\Lambda,xx,xxx,xxxx,\ldots\} & &\\
+    \\
+    \text{language($x^*$)}&=\{\Lambda,x,xx,xxx,\ldots\} & &\\
+    \text{or}\\
+    x^*&=\{\Lambda,x,xx,xxx,\ldots\} & &
+\end{align*}
+Defining language(\(x^*\)) as some sequence of \(x\)'s (or none) gives us the basis for writing regular expressions.
+Defining \(\text{language}(a\ b^*) = \text{language}(ab^*)\) is words with an \(a\) followed by any number of \(b\)'s: \(\{a,ab,abb,abbb,\ldots\}\).
+Whereas \(\text{language}((ab)^*)\) defines \(\{\Lambda,ab,abab,ababab,\ldots\}\).
+
+The plus sign \(+\) is also used for the \textbf{or} operation. \(x + y\) means to choose either \(x\) or \(y\).\\
+Consider the language:
+\begin{align*}
+    \Sigma &=\{a,b,c\}\\
+    T &=\{a,c,ab,cb,abb,cbb,abbb,cbbb,\ldots\}\\
+    T &=\text{language}((a+c)b^*)
+\end{align*}
+which constructs words with either an \(a\) or a \(c\) followed by any number of \(b\)'s.
+\\
+\((a+b)^*\) is all words formed from the alphabet \(\{a,b\}\).
+\\
+\textbf{Definition:} Given an alphabet \(\Sigma\), the set of regular expressions is defined by the following rules:
+\begin{enumerate}
+    \item For every letter in \(\Sigma\). The \(r\) is a regular expression. \(\Lambda\) is a regular expression.
+    \item If {\bf \(r_1\)} and {\(r_2\)} are in regular expressions, then so are:
+    \begin{enumerate}
+        \item \((r_1)\)
+        \item \(r_1r_2\)
+        \item \(r_1+r_2\)
+        \item \(r_1^*\)
+    \end{enumerate}
+    \item Nothing else is a regular expression.
+\end{enumerate}
+Remark: \(r_1^+\) is not included because \(r_1^+=r_1r_1^*\).
+
+Languages defined by regular expressions are referred to as regular languages. This language defining tool is of very limited capacity in that there are many interesting languages that cannot be defined via a regular expressions.
+
+\subsection{Equivalence of Regular Expressions}
+
+\(r_1=r_2\) if and only if language(\(r_1\))=language(\(r_2\))
+For example: \((a+b)^*a(a+b)^*\) is all words that have at least one \(a\). \(b^*\) is all words without an \(a\). Thus:
+\begin{equation*}
+    (a+b)^* = (a+b)^*a(a+b)^* + b^*
+\end{equation*}
+All strings = (all strings with an \(a\)) + (all strings without an \(a\)).\\
+In general, concatenation is distributive over the \(+\) operation.
+\begin{align*}
+    r_1(r_2+r_3) &= r_1r_2 + r_1r_3\\
+    (r_1+r_2)r_3 &= r_1r_3 + r_2r_3
+\end{align*}
+However the distributive law must be used with caution: \((ab)^* \neq a^*b^*\)
+
+\subsection{Language associated with a regular expression}
+By following these rules you can make a regular language from a regular expression:
+\begin{enumerate}
+    \item The language associated with a regular expression that is just a single letter is that one letter word alone.
+    The language associated with \(\Lambda\) is \(\{\Lambda\}\), a one word language.
+    \item If \(L_1\) is the language associated with the regular expression \(r_1\) and \(L_2\) is the language associated with the regular expression \(r_2\):
+    \begin{enumerate}
+        \item The product \(L_1L_2\) is the language associated with the regular expression \(r_1r_2\).
+        \item the union \(L_1+L_2\) is the language associated with the regular expression \(r_1+r_2\).
+        \item The Kleene closure of \(L_1\), written \(L_1^*\), is the language associated with the regular expression \(r_1^*\).
+    \end{enumerate}
+\end{enumerate}
+For all regular expressions, there is some language associated with it.
+
+\subsection{Finite languages are regular}
+\begin{theorem}
+    Let \(L\) be a finite language. There is a regular expression that defines it
+\end{theorem}
+\begin{proof}
+    Write each word in \(L\), and write a \(+\) between regular expressions.
+\end{proof}
+The regular expression that is defined by this algorithm is not necessarily unique. This algorithm does not work for infinite languages. Regular expressions must be finite, even if the language defined is infinite.

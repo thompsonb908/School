@@ -1,0 +1,213 @@
+\documentclass[a4paper]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+%\usepackage{inconsolata}
+\usepackage{listings}
+\usepackage{textcomp}
+\usepackage[english]{babel}
+\usepackage{amsmath, amssymb}
+\usepackage{ulem}
+%\usepackage{xcolor}
+\usepackage[left=1in,right=1in,top=1in,bottom=1in]{geometry}
+
+%figure support
+\usepackage{import}
+\usepackage{xifthen}
+\pdfminorversion=7
+\usepackage{pdfpages}
+\usepackage{transparent}
+\newcommand{\incfig}[1]{%
+	\def\svgwidth{\columnwidth}
+	\import{./figures/}{#1.pdf_tex}
+}
+\graphicspath{ {./figures/} }
+\pdfsuppresswarningpagegroup=1
+\usepackage{color}
+\definecolor{pblue}{rgb}{0.13,0.13,1}
+\definecolor{pgreen}{rgb}{0,0.5,0}
+\definecolor{pred}{rgb}{0.9,0,0}
+\definecolor{pgrey}{rgb}{0.46,0.45,0.48}
+
+\lstset{language=Java,
+	showspaces=false,
+	showtabs=false,
+	breaklines=true,
+	showstringspaces=false,
+	breakatwhitespace=true,
+	commentstyle=\color{pgreen},
+	keywordstyle=\color{pblue},
+	stringstyle=\color{pred},
+	basicstyle=\ttfamily,
+	moredelim=[il][\textcolor{pgrey}]{\$\$},
+	moredelim=[is][\textcolor{pgrey}]{\%\%}{\%\%}
+}
+
+\begin{document}
+	\title{CIS4362.01 Homework 3 Due 11/10/19}
+	\author{Brandon Thompson 5517}
+	\maketitle
+
+	\begin{enumerate}
+		\item Suppose we define a MAC $\text{I}_{\text{RAW}} = \left( S,V \right) $ where $S\left( k,m \right) = \text{rawCBC}\left( k,m \right) $.\\
+			\textit{\emph{Explain a scenario that shows $\text{I}_{\text{RAW}}$ can be easily broken
+			using a 1-chosen message attack}} (This attack scenario can prove why the
+			last encryption step must be included in ECBC-MAC).\\
+			If adversary gives a one-block message $m \in X$. Request the tag for $m$,
+			get  $t = F\left( k,m \right) $. Output $t$ as MAC forgery for the 2-block
+			message $\left( m, t\oplus m \right) $. Then:
+			\begin{equation*}
+				\text{rawCBC}\left( k,\left( m,t\oplus m \right)  \right) = F\left( k,F\left( k,m \right) \oplus \left( t\oplus m \right)  \right) = F\left( k,t\oplus \left( t\oplus m \right)  \right) = t
+			\end{equation*}
+		\item Consider the encrypted CBC MAC built from AES. Suppose we compute the tag for a
+			a long message $m$ comprising of $n$ AES blocks.\\
+			\\
+			Let $m'$ be the $n$-block message obtained from $m$ by flipping the last bit
+			of $m$ (i.e.\ if the last bit of $m$ is $b$ then the last bit of $m'$ is
+			$b\oplus 1$). How many calls to AES would it take to compute the tag for $m'$ 
+			from the tag for $m$ and the MAC key? (In this question ignore message
+			padding and simply assume that the message length is always a multiple of
+			the AES block size).\\
+			\\
+			Because only the last bit of the message changes, you would need to compute:
+			$F\left( k,F\left( k_1,tag \right)  \right) \oplus 1$
+			to generate the new message $m'$, and then compute the new tag by:
+			$F\left( k_1,F\left( k,m' \right)  \right) $.\\
+			So a total of 4 AES calls are made.
+		\item Consider the following MAC verification algorithm:
+			\begin{verbatim}
+				def Verify(key, msg, sig_bytes):
+				    return HMAC(key,msg) == sig_bytes
+			\end{verbatim}
+			\begin{enumerate}
+				\item \textit{\emph{Explain how the timing attack on the above MAC
+					verification algorithm can occur.}}\\
+					\\
+					The '\verb|==|' is a byte-by-byte comparison so it will return
+					false as soon as it finds an inequality. For a target message
+					make a random tag, loop over all possible first bytes until
+					the verification takes slightly longer. Continue until all
+					bytes in the tag are valid.
+				\item \textit{\emph{Write a pseudocode that defends the aforementioned
+					verification timing attack.}}
+					\begin{verbatim}
+						return false if sig_bytes has wrong length
+						result = 0
+						for x, y in zip( HMAC(key,msg), sig_bytes):
+						    result |= ord(x) ^ ord(y)
+						return result == 0
+					\end{verbatim}
+					Function checks if the \verb|sig_bytes| is the correct length,
+					XOR's the MAC and the \verb|sig_bytes|, if they are the same
+					then result should be 0. This works because result is fully
+					calculated first, then checked if it is correct.
+			\end{enumerate}
+		\item Suppose Alice is broadcasting packets to 6 recipients $B_1,\ldots,B_6$. Privacy
+			is not important but integrity is. In other words, each of $B_1,\ldots,B_6$ 
+			should be assured that the packets he is receiving were sent by Alice.\\
+			\\
+			Alice decides to use a MAC. Suppose Alice and $B_1,\ldots,B_6$ all share
+			a secret key $k$. Alice computes a tag for every packet she sends using
+			key $k$. Each user $B_i$ verifies the tag when receiving the packet and
+			drops the packet if the tag is invalid. Alice notices that this scheme is
+			insecure because user $B_1$ can use the key $k$ to send packets with a
+			valid tag to users $B_2,\ldots,B_6$ and they will all be fooled into
+			thinking that these packets are from Alice.\\
+			\\
+			Instead, Alice sets up a set of 4 secret keys $S=\left\{ k_1,\ldots,k_4 \right\} $.
+			She gives each user $B_i$ some subset $S_i \subseteq S$ of the keys. When
+			Alice transmits a packet she appends 4 tags to it by computing the tag with
+			each of her 4 keys. When user $B_i$ receives a packet he accepts is as valid
+			only if all tags corresponding to his keys in $S_i$ are valid. For example,
+			if user $B_1$ is given keys $\left\{ k_1,k_2 \right\} $ he will accept an
+			incoming packet only if the first and second tags are valid. Note that $B_1$ 
+			cannot validate the third and fourth tags because he does not have $k_3$ or $k_4$.\\
+			\\
+			How should Alice assign keys to the 6 users so that no single user can forge
+			packets on behalf of Alice and fool some other user?
+			 \begin{center}
+			%	\color{red}
+				\[
+				S_1 = \left\{ k_2,k_3 \right\},
+				S_2 = \left\{ k_2,k_4 \right\},
+				S_3 = \left\{ k_3,k_4 \right\},
+				S_4 = \left\{ k_1,k_2 \right\},
+				S_5 = \left\{ k_1,k_3 \right\},
+				S_6 = \left\{ k_1,k_4 \right\}
+				\] 
+			 \end{center}
+		\item Use SHA256 as the hash function to hash the content of the below text. By
+			completing the assignment you will gain experience using crypto libraries
+			such as PyCrypto (Python), Crypto++ (C++), or any other. Write your code
+			and the output of your code for hashing the below message to get full credit.\\
+			\\
+			''Anarchism is a political philosophy that advocates self-governed societies
+			based on voluntary institutions. These are often described as stateless
+			societies, although several authors have defined them more specifically as
+			institutions based on non-hierarchical or free associations. Anarchism holds
+			the state to be undesirable, unnecessary and harmful.''\\
+			\\
+			\begin{lstlisting}
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
+
+public class Main {
+
+	private static final String testMessage = "Hello World!";
+	private static final String message = "Anarchism is a political philosophy that advocates self-governed societies based on voluntary institutions. These are often described as stateless societies, although several authors have defined them more specifically as institutions based on non-hierarchical or free associations. Anarchism holds the state to be undesirable, unnecessary and harmful.";
+
+	public static void main(String[] args) {
+	    System.out.println("Test message hash:");
+	    getHash(testMessage);
+	    System.out.println("Message hash:");
+	    getHash(message);
+	}
+
+	private static void getHash(String msg) {
+	    System.out.println(hashHexString(msg));
+	}
+
+	private static String hashHexString(String msg) {
+	    return convertByteToHex(calculateHashBytes(msg)).toString();
+	}
+
+	private static byte[] calculateHashBytes(String msg) {
+	    MessageDigest md = createMessageDigest(''SHA-256'');
+	    md.update(msg.getBytes());
+	    return md.digest();
+	}
+
+	public static MessageDigest createMessageDigest(String algorithm) {
+	    try {
+	        return MessageDigest.getInstance(algorithm);
+	    }
+	    catch (NoSuchAlgorithmException e) {
+		e.printStackTrace();
+	    }
+	    return null;
+	}
+
+	private static StringBuffer convertByteToHex(byte[] bytes) {
+	    StringBuffer hex = new StringBuffer();
+	    for(int i = 0; i < bytes.length; i++) {
+		hex.append(hexRepresentation(bytes[i]));
+	    }
+	    return hex;
+	}
+
+	private static String hexRepresentation(byte aByte) {
+	    return Integer.toHexString(0xFF & aByte);
+	}
+}
+\end{lstlisting}
+Outputs:
+\begin{verbatim}
+	Test message hash:
+	7f83b1657ff1fc53b92dc18148a1d65dfc2d4b1fa3d677284addd20126d9069
+	Message hash:
+	51c18b42adfb8a7b3082852ae88b6c2b60b4a5895d2b70efeee06d95b7f5
+
+	Process finished with exit code 0
+\end{verbatim}
+	\end{enumerate}
+\end{document}

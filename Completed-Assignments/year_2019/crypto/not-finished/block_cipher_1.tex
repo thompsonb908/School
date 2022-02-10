@@ -1,0 +1,222 @@
+\documentclass[a4paper]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{textcomp}
+\usepackage[english]{babel}
+\usepackage{amsmath, amssymb}
+\usepackage{mathrsfs}
+
+%figure support
+\usepackage{import}
+\usepackage{xifthen}
+\pdfminorversion=7
+\usepackage{pdfpages}
+\usepackage{transparent}
+\newcommand{\incfig}[1]{%
+	\def\svgwidth{\columnwidth}
+	\import{./figures/}{#1.pdf_tex}
+}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{corollary}{Corollary}[theorem]
+\newtheorem{lemma}[theorem]{Lemma}
+
+\pdfsuppresswarningpagegroup=1
+
+\begin{document}
+	\author{Brandon Thompson}
+	\title{Block Ciphers}
+	\maketitle
+	
+	\section{Stream Cipher vs Block Cipher}
+	%key expansion from slide 4
+	Stream ciphers encrypt one bit or byte at a time using the XOR operation.
+	Block cipher is one where a section of plain text is treated as whole and used
+	to produce a cipher text of equal length (typically 64 or 128 bits).\\
+
+	\begin{description}
+		\item[Feistal Cipher:] we can approximate the ideal block cipher by utilizing
+			the concept of a product cipher, the execution of two or more simple
+			ciphers in sequence such that the final result is is cryptographically
+			stronger than any of the component ciphers. Goal is to develop a block 
+			cipher with a key length of $k$ bits and block length of $n$ bits,
+			allowing a total of $2^{k}$ possible transformations.
+			\begin{itemize}
+				\item \textbf{Substitution:} Each plain text element or group
+					of elements is uniquely replaced by a corresponding
+					cipher text element or group of elements.
+				\item \textbf{Permutation:} A sequence of plain text elements is
+					replaced by a permutation of that sequence. No
+					elements are added, deleted, or replaced, in the sequence,
+					rather the order of the elements is changed.
+			\end{itemize}
+	\end{description}
+	Claude Shannon introduced the terms \textit{diffusion} and \textit{confusion} to capture
+	the two basic building blocks for cryptography systems, to hinder statistical analysis
+	of the cipher text. In \textbf{diffusion} the statistical structure of the plain text
+	is dissipated into long-range statistics of the cipher text. This is achieved by having
+	each plain text digit effect the value of many cipher text digits. An example is to
+	encrypt a message $M = m_1,m_2,m_3,\ldots$ of characters with an averaging operation:
+	\begin{center}
+		\[y_n = \left( \sum_{i=1}^{k} m_{n+i} \right)\mod26\] 
+	\end{center}
+	adding $k$ successive letters to get a cipher text letter $y_n$. Letter frequencies
+	in  the cipher text will be more nearly equal than in the plain text. In a binary
+	block cipher, diffusion can be achieved by repeatedly performing some permutation on
+	the data followed by applying a function to that permutation. \par
+	Every block cipher involves a transformation of a block of plain text into a block
+	of cipher text
+	given functions $f_1,\ldots,f_d:\ \{0,1\}^{n} \to \{0,1\}^{n}$\\
+	goal: build inevitable function $F:\{0,1\}^{2n} \to \{0,1\}^{2n}$ 
+	%Feistal Network slide 12
+
+	decryption
+	
+
+	\\\\
+	\section{The Function}
+	\begin{itemize}
+		\item Pseudo Random Function {\bf{(PRF)}} defined over (K,X,Y):
+	\end{itemize}
+	\begin{center}
+		F: K $\times$ X $\to $ Y
+	\end{center}
+	Such that exists ''efficient'' algorithm to evaluate F(k,x)\\
+	%\hline
+	\begin{itemize}
+		\item Pseudo Random Permutation {\bf{(PRP)}} defined over (K,X):
+	\end{itemize}
+	\begin{center}
+		E: K $\times$ X $\to$ Y
+	\end{center}
+	Such that:
+	\begin{enumerate}
+		\item Exists ''efficient'' \underline{deterministic} algorithm
+			to evaluate E(k,x)
+		\item The Function E(k,  $\cdot$) is one-to-one
+		\item Exists ''efficient'' inversion algorithm D(k,y)
+	\end{enumerate}
+	Examples:
+	\begin{itemize}
+		\item 3DES: K $\times $ X $\to $ X where X $=\{0,1\}^{64}$, K $=\{0,1\}^{168}$ 
+		\item AES: K $\times $ X $\to $ X where K $=$ X $= \{0,1\}^{128}$
+	\end{itemize}
+	Functionally, any PRP is also a PRF, A PRP is a PRF where X=Y and is efficiently invertible.\\
+	\section{DES: The Data Encryption Standard}
+	Given plain text block of $n$-bits and key of  $k$-bits, block ciphers
+	encrypt/decrypt based on these block and key sizes.
+	\begin{enumerate}
+		\item 3DES: $n = 64$ bits, $k = 168$ bits
+		\item AES: $n = 128$ bits, $k = 128, 192, 256$ bits
+	\end{enumerate}
+	Key is expanded to $k=k_1,\ldots,k_n$ message is encrypted using round
+	functions $R(k,m)$, 3DES uses 48 iterations, AES-128 uses 10 iterations.
+	\pagebreak
+	\subsection{Feistel Network}
+\begin{figure}[h]
+	\centering 
+   Given Functions $f_1, \ldots, f_d: \{0,1\}^{n}$\\
+   Goal: build invertible function $F:\left\{ 0,1 \right\}^{2n} $
+   \centering
+   \incfig{feistal-network}
+   \caption{Feistal Network}
+   \label{fig:feistal-network}
+\end{figure}
+
+\begin{equation*}
+	\text{Symbol Representation: }
+	\begin{cases}
+		R_i = f_i\left( R_{i-1} \right) \bigoplus L_{i-1}\\
+		L_i = R_{i-1}
+	\end{cases}
+\end{equation*}
+
+	For all $f_1, \ldots, f_d: \left\{ 0,1 \right\}^{n} \to  \left\{ 0,1 \right\}^{n} $
+	Feistal network F: $\left\{ 0,1 \right\}^{2n} \to  \left\{ 0,1 \right\}^{2n} $ is invertible.
+	Apply $f_1,\ldots,f_d$ in reverse order to decrypt. This process is used on
+	many block ciphers, but not AES.\\\\
+	Key is 56-bits, key expansion generates 16 keys of 48-bits.
+	Uses S-box lookup table $S_i := \{0,1\}^{6} \to \{0,1\}^{4}$ 
+	%slide 25
+	If there is a linear relationship DES can be represented by matrix vector product.\\
+	Thus the entire DES cipher would be linear.
+
+
+	\section{Attack on Block Cipher}
+	\subsection{Exhaustive Search}
+	Goal: Given a few input pairs $\left( m_i, c_i = E\left( k_i, m_i \right)  \right) $
+	$i = 1,\ldots,3$ find key $k$.
+	\pagebreak
+	\begin{lemma}
+		Suppose DES is an \textbf{ideal cipher}\\
+		$\left( 2^{56} \text{ random invertible functions} \right)$\\
+		Then  $\forall\ m,c$ there is at most \textbf{one} key s.t.\ 
+		$c=DES\left( k,m \right) $
+	\end{lemma}
+	\begin{center}
+		\[
+			Pr\left[ \exists\ k' \neq K, c = DES\left( k,m \right)
+			= DES\left( k',m \right)  \right] \le
+			\sum_{k'\in \left\{ 0,1 \right\}^{56} }^{}
+			Pr\left[ DES\left( k,m \right) =\\ 
+			DES\left( k',m \right)  \right] \le 2^{56} \cdot 
+			\frac{1}{2^{64}} = \frac{1}{2^{8}}
+		\]
+	\end{center}
+	For two DES pairs
+	\[
+		\left( m_1,c_1=DES\left( k,m_1 \right)  \right),
+		\left( m_2,c_2=DES\left( k,m_2 \right)  \right) 
+	\]
+	Unicity probability $\approx 1-\frac{1}{2^{71}}$\\
+	For AES-128: given two input/output pairs, unicity probability
+	$\approx 1-\frac{1}{2^{128}}$ \\
+	Two input/output pairs are enough for exhaustive key search.
+
+	
+	\subsection{DES Challenge}
+	msg = "The unknown messages is: XXXX \ldots"\\
+	CT  $=c_1,c_2,c_3,c_4$\\
+	\textbf{Goal:} find  $k \in \{0,1\}^{56} \text{ s.t.\ } DES\left( k_i,m_i \right) =c_i \text{ for } i=1,2,3$\\\\
+	56-bit ciphers should no be used, 128-bit key = $2^{72}$ days
+	
+	\section{Strengthen DES against exhaustive search}
+	\subsection{Method 1: Triple DES}
+	\begin{itemize}
+		\item Let $E:K \times M \to M$ be a block cipher
+		\item define 3E: $K^3\times M \to M$ as
+			\begin{center}
+				\[
+				3E\left( \left( k_1,k_2,k_3 \right) ,m\right) 
+				=E\left( k_1,D\left( k_2,E\left( k_3,m \right)  \right)  \right) \\
+				k_1=k_2=k_3 \implies \text{single DES}
+				\] 
+			\end{center}
+	\end{itemize}
+	For 3DES: Key size = $3\times 56 = 168$ bits. $3\times $ slower than DES.
+	Simple attack in time $=2^{118}$
+
+	\subsection{Why not double DES?}
+	\subsubsection{Meet in the middle attack}
+	\begin{itemize}
+		\item Define $2E\left( \left( k_1,k_2 \right) ,m \right) = E\left( k_1,E\left( k_2,m \right)  \right) $
+		\item find $\left( k_1,k_2 \right) \text{ s.t.\ } E\left( k_1,E\left( k_2,m \right)  \right) =C$ \\
+		\item equivocally: $E\left( k_2,m \right) = D\left( k_1,c \right) $ \\\\
+		%slide 34 image
+		two tables of keys and cipher texts can be combined to find both keys.\\\\
+		space $\approx 2^{56}$
+	\end{itemize}
+	Attack:
+	\begin{enumerate}
+		\item Build table of $k_0,\ldots,k_n$ and $E\left( k_0,M \right),\ldots, E\left( k_n,M \right) $ 
+		\item $\forall\ k \in \left\{ 0,1 \right\}^{56} $:
+			test if $D\left( k,C \right) $ is in 2nd column.\\
+			if so then $E\left( k_i,M \right) =D\left( k,C \right) \implies\ \left( k_i,k \right) = \left( k_2,k_1 \right) $
+	\end{enumerate}
+	time $=2^{56}\log\left( 2^{56} \right) + 2^{56}\log\left( 2^{56} \right) < 2^{63} \ll 2^{112}$ \\\\
+	Same attack on 3DES: time $= 2^{118}$, space $= 2^{56}$.
+	\subsection{Method 2: DESX}
+	
+
+\end{document}

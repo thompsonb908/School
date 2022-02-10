@@ -1,0 +1,64 @@
+\documentclass[a4paper]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{textcomp}
+\usepackage[english]{babel}
+\usepackage{amsmath, amssymb}
+
+
+%figure support
+\usepackage{import}
+\usepackage{xifthen}
+\pdfminorversion=7
+\usepackage{pdfpages}
+\usepackage{transparent}
+\newcommand{\incfig}[1]{%
+	\def\svgwidth{\columnwidth}
+	\import{./figures/}{#1.pdf_tex}
+}
+
+\pdfsuppresswarningpagegroup=1
+
+\begin{document}
+\author{Brandon Thompson}
+\title{Midterm Review}
+\maketitle
+\medskip
+	\begin{description}
+		\item[Heirarcy] is a top down approach
+		\item[Modularity] interfaces
+		\item[Regularity] compartmentalizatino
+		\item[Digital Abstraction] A to D conversion
+		\item[Boolean Logic] Min term is sum of products, Max term is product of sums.
+		\item[Number formats] Binary $101011_2 \to 2B_{16} \to 53_8$
+			\begin{equation}
+				\log_2(8)=3 \text{ use every 3 bits}, \log_2(16)=4 \text{ use every 4 bits}
+			\end{equation}
+		\item[Kilobyte to kilobit] $\frac{kB}{4}=kb$  $2^{32} = 2^{30}+2^2 = 4Gb$ 
+		\item[Micro] arangement of \ldots 
+		\item[Assembly Language] Human readable format.
+		\item[Machine Code] binary
+		\item[Principles of Computer Architecture] smaller is faster, instruction set limited, limited
+			operantds, instruction format limited. Simplicity favors regularity, common format(R,J,I),
+			simple ISA (Load store, registers). Good design demands good comprimises, decoding in hardware.
+			Make the common case fast, decoding in hardware (instruction format is similar), smaller
+			instruction set.
+		\item[Data Storage] 1 word = 32 bits, byte addressable (each word needs 4 locations).
+		\item[little Endinas] lowest byte = lowest address
+		\item[big endian] highest byte = lowest address\\
+			helps with data transfer, MIPS string operations.
+		\item[branch instructions] 
+		\item[instructino types] I,J,R
+		\item[Difference between RISK and SiSC] R = MIPS, S = x86
+		\item[memory Heirarchy]
+		\item[Convery assembly to machine] assembly > block > binary (page 309 in textbook)
+	\end{description}
+	
+	\*
+	Convert  addi s_7,s_1,-15
+	\begin{center}
+		
+	\end{center}
+
+\end{document}

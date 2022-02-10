@@ -1,0 +1,36 @@
+\section{Recursive Definitions}
+New method to define languages using three steps:
+\begin{enumerate}
+    \item Specify the basic words (base case).
+    \item Rules for constructing new words from ones already known (recursive case).
+    \item Declare that no word except those constructed by following rules 1 and 2 are in the language.
+\end{enumerate}
+
+\subsection{Examples}
+\subsubsection{Factorial Function}
+\begin{enumerate}
+    \item \(0! = 1\)
+    \item \(n!=n(n-1)!\)
+    \item No word except those constructed by following rules 1 and 2 are in the language.
+\end{enumerate}
+\subsubsection{Recusive Programs}
+\begin{itemize}
+    \item \(\Sigma+,\Sigma\{x\}\)
+    \begin{enumerate}
+        \item \(x\in\Sigma+\)
+        \item If \(w\) is any word in \(\Sigma+\), then \(xw\) is in \(\Sigma+\).
+        \item No word except those constructed by following rules 1 and 2 are in the language.
+    \end{enumerate}
+    \item \(\Sigma^*, \Sigma=\{x\}\)
+    \begin{enumerate}
+        \item \(\Lambda \in \Sigma^*\)
+        \item If \(w\) is any word in \(\Lambda^*\), then \(xw\) is in \(\Sigma^*\).
+        \item No word except those constructed by following rules 1 and 2 are in the language.
+    \end{enumerate}
+    \item S-ODD
+    \begin{enumerate}
+        \item \(x\in\text{S-ODD}\)
+        \item if \(w\) is any word in S-ODD then \(xxw\) is in S-ODD.
+        \item No word except those constructed by following rules 1 and 2 are in the language.
+    \end{enumerate}
+\end{itemize}

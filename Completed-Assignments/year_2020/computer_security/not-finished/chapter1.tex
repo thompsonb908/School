@@ -1,0 +1,184 @@
+\documentclass[a4paper]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{textcomp}
+\usepackage[english]{babel}
+\usepackage{amsmath, amssymb, amsthm}
+
+
+%figure support
+\usepackage{import}
+\usepackage{xifthen}
+\pdfminorversion=7
+\usepackage{pdfpages}
+\usepackage{transparent}
+\newcommand{\incfig}[1]{%
+	\def\svgwidth{\columnwidth}
+	\import{./figures/}{#1.pdf_tex}
+}
+\graphicspath{ {./figures/} }
+\pdfsuppresswarningpagegroup=1
+
+\theoremstyle{definition}
+\newtheorem{definition}{Definition}[section]
+
+\theoremstyle{remark}
+\newtheorem*{remark}{Remark}
+
+\begin{document}
+	\title{Chapter 1}
+	\author{Brandon Thompson 5517}
+	\maketitle
+
+	\section{Computer Security}
+	The NIST Internal/Interagency Report defines \textit{computer security} as:
+	
+	\begin{definition}{Computer Security:}
+		Measures and controls that ensure confidentiality, integrity, and availability of
+        	information system assists including hardware, software, firmware, and information
+        	being processed, stored, and communicated.
+	\end{definition}
+
+	\subsection{CIA Triad}
+	The CIA triad is the combination of \textbf{Confidentiality}, \textbf{Integrity}, and \textbf{Availability}.
+	These concepts are the fundamental security of both data and for information and computing services.
+	%figure 1.1
+	The use of the CIA triad to define security objectives is well established, some in the security
+	field feel that additional concepts are needed to present a complete picture.
+	\begin{itemize}
+		\item Confidentiality:
+			\begin{itemize}
+				\item Unauthorized disclosure of information.
+			\end{itemize}
+		\item Integrity:
+			\begin{itemize}
+				\item Unauthorized modification or destruction of information.
+			\end{itemize}
+		\item Availability:
+			\begin{itemize}
+				\item Disruption of access to or use of information or system.
+			\end{itemize}
+		\item Accountability:
+			\begin{itemize}
+				\item The requirement for actions of an entity to be traced uniquely to
+					that entity.
+				\item This supports non-repudiation, deterrence, fault isolation, intrusion
+					detection and prevention, and after-action recovery and legal action.
+				\item Must be able to trace a security breach to a responsible party.
+				\item Systems must keep records of their activities to permit later forensic
+					analysis to trace security breaches to aid in transaction disputes.
+			\end{itemize}
+		\item Authenticity:
+			\begin{itemize}
+				\item Being genuine and being able to be verified and trusted; confidence
+					in the validity of a transmission, message, or message originator.
+			\end{itemize}
+	\end{itemize}
+	
+	\subsection{Levels of Impact}
+	Three levels of impact on organizations or individuals should there be a breach of security.
+	\begin{itemize}
+		\item Low:
+			\begin{itemize}
+				\item Minor damage to assets.
+				\item Minor financial loss.
+				\item Degradation in capability such that primary functions are still
+					operational, but noticeably reduced.
+				\item Minor harm to individuals.
+			\end{itemize}
+		\item Moderate:
+			\begin{itemize}
+				\item Significant damage to assets.
+				\item Significant financial loss.
+				\item Degradation in capability such that primary functions are still
+					operational, but significantly reduced.
+				\item Harm to individuals that does not involve loss of life or serious,
+					life-threatening injury.
+			\end{itemize}
+		\item High:
+			\begin{itemize}
+				\item Major damage to assets.
+				\item Major financial loss.
+				\item Organization is not able to perform one or more of its primary
+					functions.
+				\item Severe or catastrophic harm to individuals involving loss of life
+					or serious life-threatening injuries.
+			\end{itemize}
+	\end{itemize}
+	
+	\subsection{Computer Security Challenges}
+	\begin{enumerate}
+		\item Computer security is not as simple as it first appears.
+		\item Consider potential attacks on security features.
+		\item Procedures used to provide particular services are often counterintuitive.
+		\item Physical and logical placement needs to be considered.
+		\item Security mechanisms typically involve secret information that leads to
+			questions about how this secret information is created, distributed,
+			and protected.
+		\item Attackers only need to find a single weakness, while designer needs to find
+			and eliminate all weaknesses.
+		\item Security is often an afterthought, rather than an integral part of a system.
+		\item Security requires regular can constant monitoring.
+		\item Natural tendency on part of mangers to see little benefit from security
+			investment until security fails.
+		\item Many users view strong security as an impediment to efficient and
+			user-friendly operation.
+	\end{enumerate}
+
+	\subsection{Common Terms}
+	\begin{definition}{Adversary (Threat Agent)}
+		Individual, group, organization or government that conducts or has intent to
+		conduct detrimental activities.
+	\end{definition}
+	\begin{definition}{Attack}
+		Any kind of malicious activity that attempts to collect, disrupt, deny, degrade,
+		or destroy information system resources or the information itself.
+	\end{definition}
+	\begin{definition}{Countermeasure}
+		A device or techniques thats objective is the impairment of adversarial activity, or
+		the prevention of espionage, sabotage, theft, or unauthorized access to or use of
+		sensitive information or information systems.
+	\end{definition}
+	\begin{definition}{Risk}
+		A measure of the extent to which an entity is threatened by a potential circumstance
+		or event, and typically a function of:
+		\begin{enumerate}
+			\item The adverse impacts that would arise if the circumstance or event occurs.
+			\item The likelihood of occurrence.
+		\end{enumerate}
+	\end{definition}
+	\begin{definition}{Security Policy}
+		Set of criteria for the provision of security services. Defines and constrains the
+		the activities of a data processing facility in order to maintain a condition of security
+		for systems and data.
+	\end{definition}
+	\begin{definition}{System Resource (Asset)}
+		A major application, general support system, high impact program, physical plant,
+		mission critical system, personnel, equipment, or a logically related group of systems.
+	\end{definition}
+	\begin{definition}{Threat}
+		Any circumstance with potentially adverse impacts to organizational operations.
+	\end{definition}
+	\begin{definition}{Vulnerability}
+		Weakness in an information system, system security procedures, internal controls
+		or implementation that could be exploited by a threat source.
+	\end{definition}
+	
+	%figure 1.2
+	
+	\subsection{Assets of a Computer System}
+	\begin{itemize}
+		\item Communication facilities and networks:
+		\item Data:
+		\item Software:
+		\item Hardware:
+	\end{itemize}
+	
+	%figure 1.3
+	
+	\subsection{Vulnerabilities, Threats and Attacks}
+	\begin{itemize}
+		\item Categories of vulnerabilities
+	\end{itemize}
+\end{document}

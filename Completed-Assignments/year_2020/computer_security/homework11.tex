@@ -1,0 +1,100 @@
+\documentclass[12pt]{article}
+\usepackage[top=1in, bottom=1in, left=1in, right=1in]{geometry}
+%\usepackage[margin=1in]{geometry}
+\usepackage[onehalfspacing]{setspace}
+%\usepackage[doublespacing]{setspace}
+\usepackage{amsmath, amssymb, amsthm}
+\usepackage{enumerate, enumitem}
+\usepackage{fancyhdr, graphicx, proof, comment, multicol}
+\usepackage[none]{hyphenat} % This command prevents hyphenation of words
+\binoppenalty=\maxdimen % This command and the next prevent in-line equation breaks
+\relpenalty=\maxdimen
+%    Good website with common symbols
+% http://www.artofproblemsolving.com/wiki/index.php/LaTeX%3ASymbols
+%    How to change enumeration using enumitem package
+% http://tex.stackexchange.com/questions/129951/enumerate-tag-using-the-alphabet-instead-of-numbers
+%    Quick post on headers
+% http://timmurphy.org/2010/08/07/headers-and-footers-in-latex-using-fancyhdr/
+%    Info on alignat
+% http://tex.stackexchange.com/questions/229799/align-words-next-to-the-numbering
+% http://tex.stackexchange.com/questions/43102/how-to-subtract-two-equations
+%    Text align left-center-right
+% http://tex.stackexchange.com/questions/55472/how-to-make-text-aligned-left-center-right-in-the-same-line
+\usepackage{microtype} % Modifies spacing between letters and words
+\usepackage{mathpazo} % Modifies font. Optional package.
+\usepackage{mdframed} % Required for boxed problems.
+\usepackage{parskip} % Left justifies new paragraphs.
+\linespread{1.1} 
+
+
+%figure support
+\usepackage{import}
+\usepackage{xifthen}
+\pdfminorversion=7
+\usepackage{pdfpages}
+\usepackage{transparent}
+\newcommand{\incfig}[1]{%
+	\def\svgwidth{\columnwidth}
+	\import{./figures/}{#1.pdf_tex}
+}
+\graphicspath{ {./figures/} }
+\pdfsuppresswarningpagegroup=1
+
+\newenvironment{problem}[1]
+{\begin{mdframed}[linewidth=0.8pt]
+        \textsc{Problem #1:}
+
+}
+    {\end{mdframed}}
+
+\newenvironment{solution}
+    {\textsc{Solution:}\\}
+    {\newpage}% puts a new page after the solution
+    
+\newenvironment{statement}[1]
+{\begin{mdframed}[linewidth=0.6pt]
+        \textsc{Statement #1:}
+
+}
+    {\end{mdframed}}
+
+%\newenvironment{prf}
+ %   {\textsc{Proof:}\\}
+ %   {\newpage}% puts a new page after the solution
+
+\begin{document}
+% This is the Header
+% Make sure you update this information!!!!
+\noindent
+\textbf{CIS4367.01} \hfill \textbf{Brandon Thompson} \\
+\normalsize Prof. Elibol \hfill Due Date: 3/11/20 \\
+
+% This is where you name your homework
+\begin{center}
+\textbf{Homework 11}
+\end{center}
+\begin{problem}{\#1}
+		Write a one-paragraph objective summary of the main ideas in
+		this chapter.
+	\end{problem}
+	\begin{solution}
+		Database security is important because usually databases contain
+		very sensitive data. Users interact with the database through
+		the Database Management System (DBMS) and a Structured Query Language
+		(SQL). Databases are structured with tables, rows (tuples) and columns
+		(attributes). Tables are related by primary and foreign keys to reduce
+		data redundancy.
+		Databases are vulnerable to SQL injection attacks, where user input is
+		used to retrieve information about the structure of the database or
+		cause harm to the database.
+	\end{solution}
+
+	\begin{problem}{\#2}
+		Evaluate the chapter you have just read. What more do you think you need to
+		know on this subject, or what aspects of this subject are not clear to you?
+	\end{problem}
+	\begin{solution}
+		I would like to know more about SQL injection, how to write code for an SQL
+		injection and how to defend against them (code wise). 
+	\end{solution}
+\end{document}

@@ -1,0 +1,106 @@
+\section{System Fundamentals}
+\subsection{Knowing Operating Systems}
+Operating systems offer common vulnerabilities if not configured properly by the administrator.
+Quite a few organizations are using OS without configuration or are running old versions that could be susceptible to attackers.
+
+\subsubsection{Windows}
+Windows is a large target because of its large user base.
+An endless stream of updates are hard for users to keep track of.
+Default configurations are left in place by many users.
+Old legacy versions are still in use.
+
+Microsoft Server dominates industry server rooms / farms.
+Many organizations still use outdated servers that are not secure against modern attacks.
+
+\subsubsection{Linux}
+Linux is an advanced operating system for tech enthusiasts. Also popular with pen testers and a widely used Server OS. Linux distros are open source meaning that the responsibility of maintaining the security of the system is on the administrator.
+
+\subsubsection{Mac OS X}
+Security solutions are lacking compared to other platforms, many of its users do not think they are vulnerable.
+Features are typically all enabled even if the user is not using them, such as 802.11 wireless and bluetooth connectivity that creates a much larger attack surface.
+
+Apple devices do not work well on Windows domains.
+Some features work well but others will not.
+
+\subsubsection{Android}
+Android is estimated to be on 80\% of smartphones in use today.
+Designed for touchscreen devices.
+Android has seen rapid growth because of its flexibility and customization and because it is free to use.
+
+Counterfeit devices are cheap and often contain malware.
+Has similar issues to Linux were there are many different versions.
+
+\subsection{Networks}
+Networks come in four different sizes, based on the scale of the network.
+\begin{itemize}
+    \item Personal Area Network (PAN)
+    \item Local Area Network (LAN)
+    \item Municipal Area Network (MAN)
+    \item Wide Area Network (WAN)
+\end{itemize}
+\subsubsection{Network Types}
+\begin{itemize}
+    \item Bus
+    \begin{itemize}
+        \item All connecting nodes in a single run.
+        \item Bus is a common link to all machines.
+        \item All connectivity is lost if the bus is damaged.
+        \item No true bus-topology is used today.
+    \end{itemize}
+    \item Ring
+    \begin{itemize}
+        \item Use the common connector in a loop style.
+        \item Some layouts use concentric rings for redundancy if one fails.
+        \item Each node attaches to the ring and delivers packets according to its designated turn or availability of the \textbf{token}.
+    \end{itemize}
+    \item Star
+    \begin{itemize}
+        \item Common because of ease of setup and isolation of connectivity problems.
+        \item Multiple nodes connect to a central network device.
+        \item Popular because of its resistance to outages.
+    \end{itemize}
+    \item Hybrid
+    \begin{itemize}
+        \item Most common layout in use today.
+        \item Current networks are the offspring of many additions and alterations over many years of expansion or changes. 
+    \end{itemize}
+    \item Mesh
+    \begin{itemize}
+        \item Web of cabling that attaches a group of nodes to each other.
+        \item Often used for mission-critical services because of its high level of redundancy and resistance to outages.
+        \item The Internet, is one growing complex mesh network.
+    \end{itemize}
+\end{itemize}
+
+\subsubsection{OSI Model}
+Operating System Interconnect (OSI).
+Defines a common set of rules for vendors of hardware and software.
+\begin{itemize}
+    \item Layer 1: Physical\\
+    Physical media and dumb devices (cabling, Category 5e, RJ-45 connectors and hubs).
+    \item Layer 2: Data Link\\
+    Ensures that data transfer is free of errors (Media access control MAC, and link establishment).
+    802.3 Ethernet and 802.11 Wi-Fi protocols.
+    \item LAyer 3: Network\\
+    Determines the path of data packets based on different factors defined by the protocol used.
+    IP addressing for routing data packets (ICMP is here).
+    \item Layer 4: Transport\\
+    Layer ensures the transport re sending of data is successful, includes error checking operations as well as working to keep data messages in sequence.
+    \item Layer 5: Session\\
+    Identifies session between different network entities.
+    Monitors and controls connections, allowing multiple, separate connections to different resources.
+    \item Layer 6: Presentation\\
+    Translates data that is understandable by the next receiving layer.
+    Traffic flow is presented in a format that can be consumed bt the receiver and can optionally be encrypted vis SSL.
+    \item Layer 7: Application\\
+    User platform in whic the user and the software processes within the system can operate and access network resources.
+    Applications and software suites that we use on a daily basis are in this layer.
+\end{itemize}
+\subsection{4 Phases of Ethical Hacking}
+
+\subsubsection{Footprinting}
+
+
+\subsubsection{Scanning}
+\subsubsection{Enumeration}
+\subsubsection{System Hacking}

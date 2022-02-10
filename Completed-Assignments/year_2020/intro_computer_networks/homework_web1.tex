@@ -1,0 +1,125 @@
+\documentclass[12pt]{article}
+\usepackage[top=1in, bottom=1in, left=1in, right=1in]{geometry}
+%\usepackage[margin=1in]{geometry}
+\usepackage[onehalfspacing]{setspace}
+%\usepackage[doublespacing]{setspace}
+\usepackage{amsmath, amssymb, amsthm}
+\usepackage{enumerate, enumitem}
+\usepackage{fancyhdr, graphicx, proof, comment, multicol}
+\usepackage[none]{hyphenat} % This command prevents hyphenation of words
+\binoppenalty=\maxdimen % This command and the next prevent in-line equation breaks
+\relpenalty=\maxdimen
+%    Good website with common symbols
+% http://www.artofproblemsolving.com/wiki/index.php/LaTeX%3ASymbols
+%    How to change enumeration using enumitem package
+% http://tex.stackexchange.com/questions/129951/enumerate-tag-using-the-alphabet-instead-of-numbers
+%    Quick post on headers
+% http://timmurphy.org/2010/08/07/headers-and-footers-in-latex-using-fancyhdr/
+%    Info on alignat
+% http://tex.stackexchange.com/questions/229799/align-words-next-to-the-numbering
+% http://tex.stackexchange.com/questions/43102/how-to-subtract-two-equations
+%    Text align left-center-right
+% http://tex.stackexchange.com/questions/55472/how-to-make-text-aligned-left-center-right-in-the-same-line
+\usepackage{microtype} % Modifies spacing between letters and words
+\usepackage{mathpazo} % Modifies font. Optional package.
+\usepackage{mdframed} % Required for boxed problems.
+\usepackage{parskip} % Left justifies new paragraphs.
+\linespread{1.1} 
+
+
+%figure support
+\usepackage{import}
+\usepackage{xifthen}
+\pdfminorversion=7
+\usepackage{pdfpages}
+\usepackage{transparent}
+\newcommand{\incfig}[1]{%
+	\def\svgwidth{\columnwidth}
+	\import{./figures/}{#1.pdf_tex}
+}
+\graphicspath{ {./figures/} }
+\pdfsuppresswarningpagegroup=1
+
+\newenvironment{problem}[1]
+{\begin{mdframed}[linewidth=0.8pt]
+        \textsc{Problem #1:}
+
+}
+    {\end{mdframed}}
+
+\newenvironment{solution}
+    {\textsc{Solution:}\\}
+    {\newpage}% puts a new page after the solution
+    
+\newenvironment{statement}[1]
+{\begin{mdframed}[linewidth=0.6pt]
+        \textsc{Statement #1:}
+
+}
+    {\end{mdframed}}
+
+%\newenvironment{prf}
+ %   {\textsc{Proof:}\\}
+ %   {\newpage}% puts a new page after the solution
+
+\begin{document}
+% This is the Header
+% Make sure you update this information!!!!
+\noindent
+\textbf{CNT 3004C-01 Intro to Computer Networks} \hfill \textbf{Brandon Thompson} \\
+\normalsize Prof. Ding \hfill Due Date: 2/24/20 \\
+
+% This is where you name your homework
+\begin{center}
+\textbf{Web 1}
+\end{center}
+	Obtain the HTTP/1.1 specification (RFC 2616). Answer the following questions:
+	\begin{problem}{\#1}
+		Explain the mechanism used for signaling between the client and server
+		to indicate that a persistent connection is being closed. Can the
+		client, the server, or both signal the close of a connection?
+	\end{problem}
+	\begin{solution}
+		\begin{itemize}
+			\item Mechanism used for signaling persistent connection to close
+				is a connection-token of ''close'' in the connection
+				header sent in the request that request becomes the last
+				one for the connection (section 8.1.2.1 of RFC 2616).
+			\item Both the client and server can signal the closing of a
+				connection by using the Connection header field 
+				(section 8.1.2 of RFC 2616).
+		\end{itemize}
+	\end{solution}
+
+	\begin{problem}{\#2}
+		Can a client open three or more simultaneous connections with a given server?
+	\end{problem}
+	\begin{solution}
+		Clients should limit the number of simultaneous connections that they
+		maintain to a given server. A single-user client should not maintain
+		more than 2 connections with any server or proxy. A proxy should use
+		up to $2*N$ where $ N$ is the number of simultaneous active users
+		(section 8.1.4 RFC 2616).
+
+		Assuming that the client in question is a single-user client, no,
+		they would only be able to open 2 connections to a server.
+	\end{solution}
+
+	\begin{problem}{\#3}
+		Either a server or a client may close a transport connection between them if
+		either one detects a connection has been idle for some time. Is it possible
+		that one side starts closing a connection while the other side is transmitting
+		data via this connection? Explain.
+	\end{problem}
+	\begin{solution}
+		A client, server or proxy may close the transport connection at any time. For
+		For example, a client might have started to send a new request at the same time
+		that the server decides to close the ''idle'' connection. From server's point of
+		view, the connection is being closed because it was idle, but from the client's
+		point of view there is a request in progress (section 8.1.4 RFC 2616).
+
+		Yes, a connection could be closed on one end but not on another. RFC also states
+		that ''clients, servers, and proxies must be able to recover from asynchronous
+		close events.''
+	\end{solution}
+\end{document}

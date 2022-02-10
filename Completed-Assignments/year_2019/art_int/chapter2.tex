@@ -1,0 +1,53 @@
+\documentclass[a4paper]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{textcomp}
+\usepackage[english]{babel}
+\usepackage{amsmath, amssymb}
+
+
+%figure support
+\usepackage{import}
+\usepackage{xifthen}
+\pdfminorversion=7
+\usepackage{pdfpages}
+\usepackage{transparent}
+\newcommand{\incfig}[1]{%
+	\def\svgwidth{\columnwidth}
+	\import{./figures/}{#1.pdf_tex}
+}
+
+\pdfsuppresswarningpagegroup=1
+
+\begin{document}
+	\author{Brandon Thompson}
+	\title{Chapter 2 Notes}
+	\maketitle
+	\medskip
+	
+	The Chinese Room Experiment is as follows:
+	\begin{itemize}
+		\item An \textit{English speaking} human is placed in a room. The human
+			has no comprehension to read, speak or understand Chinese.
+		\item A set of cards showing printed Chinese symbols.
+		\item A list of instructions written in English.
+
+		\item[$-$] A story in \textit{Chinese} is fed into the room as well as a set of questions.
+		\item[$-$] The human has to follow the instructions and cards to answer the questions.
+	\end{itemize}
+	If this system is set up and followed correctly, one would be able to fool an observer into
+	believing that the person in the room knew Chinese, when in fact the human in the room gained
+	no knowledge about the language. \\
+	A computer program that behaves in an intelligent way does not produce an \textit{understanding}
+	of the material, just an imitation.\\
+	
+	Artificial intelligence is all around us. Fuzzy logic is widely used in washing machines,
+	cars and elevators. Intelligent agents are used to solve problems on our computers and
+	search the internet for relevant documents.\\
+	Robots are the physical embodiment of agents, we use them to explore places humans cannot
+	go. Expert systems are used by doctors to diagnose/prescribe treatment. AI is also good
+	for problems involving combinatorial solutions, like scheduling and travel planning.\\
+
+
+\end{document}

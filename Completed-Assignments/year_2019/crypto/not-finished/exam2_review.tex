@@ -1,0 +1,47 @@
+\documentclass[a4paper]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{textcomp}
+\usepackage[english]{babel}
+\usepackage{amsmath, amssymb}
+
+
+%figure support
+\usepackage{import}
+\usepackage{xifthen}
+\pdfminorversion=7
+\usepackage{pdfpages}
+\usepackage{transparent}
+\newcommand{\incfig}[1]{%
+	\def\svgwidth{\columnwidth}
+	\import{./figures/}{#1.pdf_tex}
+}
+\graphicspath{ {./figures/} }
+\pdfsuppresswarningpagegroup=1
+
+\begin{document}
+	\title{Test 2 Review}
+	\author{Brandon Thompson }
+	\maketitle
+
+	\begin{enumerate}
+		\item Statistical Test (2 questions)\\
+			look at given input, gives 0 or 1 if input is random.
+		\item Calculate advantage
+		\item input/output/key size for DES, 3DES AES
+		\item block cipher diagram\\
+			key expansion and number of rounds.
+		\item Feistal Network forward and backward formulas
+		\item Problem with double DES
+			\begin{itemize}
+				\item meet in middle attack
+				\item time to build table
+			\end{itemize}
+		\item AES 
+		\item Semantic security of CBC
+		\item randomized encryption
+		\item nonce in cypher text
+		\item nonce-based CBC
+	\end{enumerate}
+\end{document}

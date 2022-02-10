@@ -1,0 +1,65 @@
+\subsection{Multiple choice questions}
+\begin{enumerate}
+    \item Enumeration is useful to system hacking because it provides which of the following? \textbf{\left( Usernames \right))}
+    \item Enumeration does not uncover which of the following pieces of information? \textbf{\left( Ports \right))}
+    \item \verb|________| involves grabbing a copy of a zone file. \textbf{\left( Zone transfer \right))}
+    \item Which of the following would confirm a user named 'patel' in SMTP \textbf{\left( \verb|vrfy patel| \right))}
+    \item \verb|VRFY| is used to do which of the following? \textbf{\left( Validate an email address. \right))}
+    \item \verb|________| is a method for expanding an email list. \textbf{\left( \verb|EXPN| \right))}
+    \item An attacker can use \verb|________| to enumerate users on a system. \textbf{\left( TCP/IP \right))}
+    \item A \verb|_____| is used to connect to a remote system using NetBIOS. \textbf{\left( \verb|NULL| session \right))}
+    \item \verb|_____| is used to synchronize clocks on a network. \textbf{\left( NTP (Network time protocol) \right))}
+    \item Port number \verb|____| is used for SMTP \textbf{\left(  25 \right))}
+    \item Port number \verb|____| is used by DNS for zone transfers. \textbf{\left( TCP 53 \right))}
+    \item Which tool / command is used to view NetBIOS information? \textbf{\left( \verb|nbtstat| \right))}
+    \item SNScan is used to access information for which protocol? \textbf{\left( SNMP \right))}
+    \item SMTP is used to perform which function? \textbf{\left( Send / receive email messages. \right))}
+    \item Which ports does SNMP use to function? \textbf{\left( 161 and 162 \right))}
+    \item LDAP is used to perform which functions? \textbf{\left( Query a database. \right))} 
+    \item SNMP us used to do which of the following? \textbf{\left( Monitor and manage network devices. \right))}
+    \item SNMP us used to perform which functions in relation to hardware? \textbf{\left( Trap messages \right))}
+    \item What is an SID used to do in windows? \textbf{\left( Identify a user \right))}
+    \item A DNS zone transfer is used to do whicj of the following? \textbf{\left( Synchronize DNS server information \right))}
+    \item What command would that adversary use to show all the systems within the domain using the command line interface in Windows? \textbf{\left( \verb|net view /domain:<domain_name>| \right))}
+    \item In Linux, what file allows you to see user information such as full name, phone number, and office information? \textbf{\left( \verb|passwd file| \right))}
+    \item In Linux, what designator is used to uniquely identify a user account? \textbf{\left( UID \right))}
+    \item As a white hat, just completed the footprinting phase of your attack, you move on by operating an assortment of tools to gather intelligence on your target. You were able to determine what services are being offered on ports. You were able to see what accounts are available and to identify different sharing services as well. What phase were you operating within? \textbf{\left( Enumeration \right))}
+    \item Which of the following services is associated with TCP port 389? \textbf{\left( LDAP \right))}
+\end{enumerate}
+
+% Download PsTools suite
+\subsection{Brief explanation questions}
+\begin{enumerate}
+    \item What information can be gathered by performing enumeration:
+    \begin{itemize}
+        \item Usernames
+        \item Host names
+        \item Share names
+        \item Services
+        \item Application data
+        \item Group information
+    \end{itemize}
+    \item Write on Windows enumeration:
+    \begin{itemize}
+        \item Windows OS has computers, groups and local and domain users.
+        \item Users and groups have unique SIDs associated that follow a particular format.
+        \item SIDs have different numbers for groups and particular users.
+        \item An RID at the end of the SID is used to identify the particular account.
+    \end{itemize}
+    \item Write on Linux enumeration.
+    \begin{itemize}
+        \item Linux records the username and user ID (UID), the password, primary group ID (GID), secondary groups, home directory, and shell in the \verb|\etc\passwd| file.
+        \item the finger command is used to find out who is logged in the the system.
+        \item the \verb|rpcinfo| command is used to find remote procedure calls for a hostname.
+    \end{itemize}
+    \item Describe features / steps of any one tool for enumeration of your choice:
+    \begin{itemize}
+        \item PsTools is used for both local and remote system assessment and exploration.
+        \item Can be used to display SIDs, system information, network performance, kill processes, list process information, see who is logged on, view event logs, change passwords, etc.
+    \end{itemize}
+    \item What is SMTP enumeration and SNMP enumeration, write with one-one tool example.
+    \begin{itemize}
+        \item SMTP is the simple mail transfer protocol used for managing email servers. Can use the \verb|VRFY| command to validate if a user ID is present.
+        \item SNMP is the simple network management protocol. SNScan can detect devices on a network enabled for SNMP.
+    \end{itemize}
+\end{enumerate}

@@ -1,0 +1,109 @@
+\documentclass[a4paper]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{textcomp}
+\usepackage[english]{babel}
+\usepackage{amsmath, amssymb}
+
+
+%figure support
+\usepackage{import}
+\usepackage{xifthen}
+\pdfminorversion=7
+\usepackage{pdfpages}
+\usepackage{transparent}
+\newcommand{\incfig}[1]{%
+	\def\svgwidth{\columnwidth}
+	\import{./figures/}{#1.pdf_tex}
+}
+\graphicspath{ {./figures/} }
+\pdfsuppresswarningpagegroup=1
+
+\begin{document}
+	\title{Study Session 4: Memory}
+	\author{Brandon Thompson}
+	\maketitle
+	
+	\begin{enumerate}
+
+		\item You are building a computer with a hierarchical memory system that consists
+			of separate instruction
+	and data caches followed by main memory. You are using the MIPS multi-cycle processor from figure 7.41
+	running at 1GHz.
+	\begin{enumerate}
+		\item Suppose the instruction cache is perfect but the data cache has a 5\% miss rate. On a
+			cache miss, the processor stalls for 60 ns to access main memory, then resumes normal
+			operation. Taking cache misses into account, what is the average memory access time?
+			\[
+			t=\frac{1ns}{t_{MM}=60ns} MR=5\%\\
+			AMAT = t_{hit} + MR_{MM} * t_{MM}\\
+			=1ns + 0.05 * 60ns\\
+			AMAT = 4ns
+			.\] 
+			%answer
+		\item How many clock cycles per instruction (CPI) on average are required for load and store
+			word instructions considering the non-ideal memory system?
+
+			%answer
+			CPI_{lw}= 4 + 4 = 8\\
+			CPI_{sw}= 3 + 4 = 7
+		\item Consider the benchmark application of Example 7.7 that has 25\% loads, 10\% stores, 11\%
+			branches, 2\% jumps, and 52\% r-type instructions. Taking the non-ideal memory system
+			into account, what is the average CPI for this benchmark?
+			Average CPI =
+			(0.1) + (0.02) * 3 + 0.52 * 4 + 0,1 * 7 + 0.25 * 8 = 5.17
+
+		\item Now assume that the instruction cache is also non-ideal and has a 7\% miss rate. What
+			is the average CPI for the benchmark in part (c)? Take into account both instructions
+			and data cache misses.
+	\end{enumerate}
+
+		\item 
+			\begin{enumerate}
+				\item The instruction cache is perfect but the data cache has a 15\% miss
+					rate. On a cache miss, the processor stalls for 200ns to access
+					main memory, then resumes normal operation. Taking cache misses into
+					account, what is the average memory access time?
+					%answer
+
+				\item How many clock cycles per instruction (CPI) on average are required
+					for load and store word instructions considering the non-ideal
+					memory system?
+					%answer
+				\item Consider the benchmark application of Example 7.7 that has 25\% loads,
+					10\% stores, 11\% branches, 2\% jumps, and 52\% r-type instructions.
+					Taking the non-ideal memory system into account, what is the average
+					CPI for this benchmark?
+					%answer
+				\item Now assume that the instruction cache is also non-ideal and has a 10\%
+					miss rate. What is the average CPI for the benchmark in part (c)?
+					Take into account both instruction and data cache misses.
+					%answer
+			\end{enumerate}
+
+		\item The chapter described the least recently used (LRU) replacement policy for multi-way
+			associative caches. Other, less common, replacement policies include
+			first-in-first-out (FIFO) and random policies. FIFO replacement evicts the block
+			that has been there the longest, regardless of how recently it was accessed.
+			Random replacement randomly picks a block to evict.
+			\begin{enumerate}
+				\item Discuss the advantages and disadvantages of each of these replacement
+					policies.\\
+					\begin{itemize}
+						\item LRU Advantage: Only holds most used data.
+						\item LRU Disadvantage: 
+						\item FIFO Advantage: Queue, easy to implement
+						\item FIFO Disadvantage: Violates spatial and temporal
+							locality by evicting data used often
+						\item Rand Advantage: simple implementation, less overhead.
+						\item Rand Disadvantage: don't know which data is evicted.
+					\end{itemize}
+				\item Describe a data access pattern for which FIFO would perform better than
+					LRU.\\
+					access previously accessed data, loops 
+			\end{enumerate}
+	\end{enumerate}
+
+	
+\end{document}

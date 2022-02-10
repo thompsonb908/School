@@ -1,0 +1,105 @@
+%% Creator: Inkscape inkscape 0.92.4, www.inkscape.org
+%% PDF/EPS/PS + LaTeX output extension by Johan Engelen, 2010
+%% Accompanies image file 'network.pdf' (pdf, eps, ps)
+%%
+%% To include the image in your LaTeX document, write
+%%   \input{<filename>.pdf_tex}
+%%  instead of
+%%   \includegraphics{<filename>.pdf}
+%% To scale the image, write
+%%   \def\svgwidth{<desired width>}
+%%   \input{<filename>.pdf_tex}
+%%  instead of
+%%   \includegraphics[width=<desired width>]{<filename>.pdf}
+%%
+%% Images with a different path to the parent latex file can
+%% be accessed with the `import' package (which may need to be
+%% installed) using
+%%   \usepackage{import}
+%% in the preamble, and then including the image with
+%%   \import{<path to file>}{<filename>.pdf_tex}
+%% Alternatively, one can specify
+%%   \graphicspath{{<path to file>/}}
+%% 
+%% For more information, please see info/svg-inkscape on CTAN:
+%%   http://tug.ctan.org/tex-archive/info/svg-inkscape
+%%
+\begingroup%
+  \makeatletter%
+  \providecommand\color[2][]{%
+    \errmessage{(Inkscape) Color is used for the text in Inkscape, but the package 'color.sty' is not loaded}%
+    \renewcommand\color[2][]{}%
+  }%
+  \providecommand\transparent[1]{%
+    \errmessage{(Inkscape) Transparency is used (non-zero) for the text in Inkscape, but the package 'transparent.sty' is not loaded}%
+    \renewcommand\transparent[1]{}%
+  }%
+  \providecommand\rotatebox[2]{#2}%
+  \newcommand*\fsize{\dimexpr\f@size pt\relax}%
+  \newcommand*\lineheight[1]{\fontsize{\fsize}{#1\fsize}\selectfont}%
+  \ifx\svgwidth\undefined%
+    \setlength{\unitlength}{680.31496063bp}%
+    \ifx\svgscale\undefined%
+      \relax%
+    \else%
+      \setlength{\unitlength}{\unitlength * \real{\svgscale}}%
+    \fi%
+  \else%
+    \setlength{\unitlength}{\svgwidth}%
+  \fi%
+  \global\let\svgwidth\undefined%
+  \global\let\svgscale\undefined%
+  \makeatother%
+  \begin{picture}(1,0.5)%
+    \lineheight{1}%
+    \setlength\tabcolsep{0pt}%
+    \put(0,0){\includegraphics[width=\unitlength,page=1]{network.pdf}}%
+    \put(0.25200443,0.38359915){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}R:Rain\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=2]{network.pdf}}%
+    \put(0.02694487,0.22284228){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}S:sprinkler\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=3]{network.pdf}}%
+    \put(0.30189451,0.23171171){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}G:grass wet\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=4]{network.pdf}}%
+    \put(0.60810439,0.42683716){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}P(R)\end{tabular}}}}%
+    \put(0.60755011,0.37694715){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}a %\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=5]{network.pdf}}%
+    \put(0.74726721,0.45937786){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}R\end{tabular}}}}%
+    \put(0.7511226,0.40948785){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}true\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=6]{network.pdf}}%
+    \put(0.74590867,0.36657441){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}false\end{tabular}}}}%
+    \put(2.70689596,1.08877222){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\begin{minipage}{0.37502645\unitlength}\raggedright \end{minipage}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=7]{network.pdf}}%
+    \put(0.82819996,0.45937786){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}P(S)\end{tabular}}}}%
+    \put(0.83205535,0.40948785){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}b%\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=8]{network.pdf}}%
+    \put(0.82684142,0.36657441){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}c%\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=9]{network.pdf}}%
+    \put(0.56707122,0.27132104){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}S\end{tabular}}}}%
+    \put(0.5709266,0.22143103){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}true\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=10]{network.pdf}}%
+    \put(0.56571267,0.1785188){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}true\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=11]{network.pdf}}%
+    \put(0.6480039,0.27132104){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}R\end{tabular}}}}%
+    \put(0.65185928,0.22143103){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}true\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=12]{network.pdf}}%
+    \put(0.64664536,0.1785188){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}false\end{tabular}}}}%
+    \put(2.0949791,0.32710896){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\begin{minipage}{0.68315099\unitlength}\raggedright \end{minipage}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=13]{network.pdf}}%
+    \put(0.57092654,0.12165133){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}false\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=14]{network.pdf}}%
+    \put(0.56571261,0.07873904){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}false\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=15]{network.pdf}}%
+    \put(0.65185922,0.12165133){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}true\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=16]{network.pdf}}%
+    \put(0.64664529,0.07873904){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}false\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=17]{network.pdf}}%
+    \put(0.72893664,0.27132104){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}P(G)\end{tabular}}}}%
+    \put(0.73279203,0.2214311){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}d%\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=18]{network.pdf}}%
+    \put(0.7275781,0.1785188){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}e%\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=19]{network.pdf}}%
+    \put(0.73279196,0.12165133){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}f%\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=20]{network.pdf}}%
+    \put(0.72757804,0.07873904){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}g%\end{tabular}}}}%
+  \end{picture}%
+\endgroup%

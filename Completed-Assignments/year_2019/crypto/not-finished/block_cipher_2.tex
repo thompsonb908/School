@@ -1,0 +1,73 @@
+\documentclass[a4paper]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{textcomp}
+\usepackage[english]{babel}
+\usepackage{amsmath, amssymb}
+
+
+%figure support
+\usepackage{import}
+\usepackage{xifthen}
+\pdfminorversion=7
+\usepackage{pdfpages}
+\usepackage{transparent}
+\newcommand{\incfig}[1]{%
+	\def\svgwidth{\columnwidth}
+	\import{./figures/}{#1.pdf_tex}
+}
+
+\pdfsuppresswarningpagegroup=1
+
+\begin{document}
+	\title{Block Cipher}
+	\maketitle
+	\medskip
+	
+	\section{Attacks on the Implementation}
+	\begin{enumerate}
+		\item Side Channel Attacks:
+			\begin{itemize}
+				\item Measure \textbf{time} to do enc/dec, measure \textbf{power} for enc/dec
+			\end{itemize}
+		\item Fault Attacks:
+			\begin{itemize}
+				\item Computing errors in the last round expose the secret key $k$.
+			\end{itemize}
+	\end{enumerate}
+
+	\section{Linear and Differential Attacks}
+	Given \textit{many} input/output pairs, we can recover the key with time less than $2^{56}$.\\
+	\underline{Linear Cryptanalysis} (overview): let $c = DES\left( k,m \right) $\\
+	Suppose for random $k,m$ :\\
+	\begin{equation}
+		\label{eq:pr}
+		Pr\left[ m\left[ i_1 \right] \oplus \ldots\oplus m\left[ i_r \right] \bigoplus c\left[ j_j \right] \oplus \ldots \oplus c\left[ j_v \right] = k\left[ l_1 \right] \oplus \ldots \oplus k\left[ l_u \right]  \right] = \frac{1}{2} + \mathcal{E}
+	\end{equation}
+	 
+	For some $\mathcal{E}$. For DES, this exists with  $\mathcal{E}= \frac{1}{2^{21}} \approx 0.0000000477$.\\\\
+	First part is the subset of message bits, second part is the subset of cipher text bits, third
+	part is the subset of key bits.\\
+	\subsection{Linear Attacks}
+	Theorem: given $\frac{1}{\mathcal{E}^2}$ random $\left( m,c=DES\left( k,m \right)  \right) $ pairs then
+	\begin{equation*}
+		k\left[ l_1,\ldotsl_u \right] = MAJ \left[ m\left[ i_1,\ldots,i_r \right] \oplus c\left[ j_j,\ldots,j_v \right]   \right] \text{with probability} \ge 97.7\%
+	\end{equation*}
+	$\implies$ with $\frac{1}{\mathcal{E}^2}$ input/output pairs we can find $k\left[ l_1,\ldots,l_u \right] $ in time $\approx \frac{1}{\mathcal{E}^2}$.\\
+	For DES, $\mathcal{E} = \frac{1}{2^{21}}\implies$ with $2^{24}$ input/output pairs can find
+	$k\left[ I_1,\ldots,I_u \right] $ in time $2^{24}$.\\
+	Roughly speaking: can find 14 key ''bits'' this way in time $2^{24}$. Brute force
+	remaining $56-14=42$ bits in time $2^{24}$. Total attack time $\approx 2^{43}\left( \ll_2^{56} \right) $ 
+	with $2^{24}$ random input/output pairs.\\
+	A tiny bit of linearity in $S_5$ lead to a $2^{42}$ time attack.
+	
+	\subsection{Quantum Attacks}
+	Generic search problem: Let $f: X \to \left\{ 0,1 \right\}^{} $ be a function. Goal:
+	find $x \in X $
+		
+
+	\section{Exploiting the DRAM Rowhammer Bug to Gain Kernel Privileges}
+	\subsection{The DRAM subsystem}
+	
+\end{document}

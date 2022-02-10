@@ -1,0 +1,124 @@
+\begin{problem}{\#1 (7 points)}
+    \begin{enumerate}[label=\alph*)]
+        \item Consider the language \(S^*\), where \(S = \{a,ab,ba\}\). Is the string \((abbba)\) a word in the language?
+        \item Write out all of the words in this language with 3 letters.
+        \item Write 5 words from this language with 4 letters.
+        \item What is English description of this language?
+    \end{enumerate}
+\end{problem}
+\vspace{2em}
+\begin{solution}
+    \begin{enumerate}[label=\alph*)]
+        \item The String \((abbba)\) is not in the language \(S^*\).\\
+        If we factor the word we get: \(ab|b|ba\) and \(b\) is not a letter in the alphabet, meaning that this cannot be a word in \(S^*\).
+        \item \((aaa, aab, aba, baa)\)
+        \item \((aaaa, aaab,aaba,abaa,baaa,abba)\)
+        \item All words of a's, and b's with no more than 2 b's in a row. 
+    \end{enumerate}
+\end{solution}
+
+\begin{problem}{\#2 (6 points)}
+    Let \(\Sigma = \{a,b\}\)
+    \begin{enumerate}[label=\alph*)]
+        \item Consider the language \(S^*\), where \(S=\{aa,ab,ba,bb\}\).
+        Give an English description of this language.
+        \item Give an example of a set \(S\) such that \(S^*\) only contains all possible strings of a's and b's that have length divisible by 3.
+        \item Let \(S\) be all strings of a's and b's with odd length.
+        What is \(S^*\)?
+    \end{enumerate}
+\end{problem}
+\vspace{2em}
+\begin{solution}
+    \begin{enumerate}[label=\alph*)]
+        \item All combinations of a's and b's excluding odd amounts of just a's or odd amounts of just b's.
+        \item \(S=\{aaa,aab,aba,abb,baa,bab,bba,bbb\}\), with a language of only three letter words the Kleene closure is guaranteed to only have combinations divisible by 3.
+        \item \(S^*\) is all strings of a's and b's.
+        Because there is a single 'a' and 'b', any string in \(S^*\) could be factored with these two. 
+    \end{enumerate}
+\end{solution}
+
+\begin{problem}{\#3 (10 points)}
+    \begin{enumerate}[label=\alph*)]
+        \item Let \(S=\{b,bb\}\) and \(T=\{ab,bb,bbbb\).
+        Show that \(S^* = T^*\).
+        \item Let \(S=\{ab,bb\}\) and \(T=\{ab,bb,bbb\}\).
+        Show that \(S^* \neq T^*\) but that \(S^* \subset T^*\)
+        \item What principle does this illustrate?
+    \end{enumerate}
+\end{problem}
+\vspace{2em}
+\begin{solution}
+    \begin{enumerate}
+        \item \(bbbb \in T\) can be factored by \(bb \in S\).
+        Therefore, any combination of \(bbbb\) is a combination of \(bb\) meaning that \(S^* = T^*\).
+        \item Because \(S \subset T\) then by definition, every word in \(S^*\) is in \(T^*\), but not every word in \(T^*\) is in \(S^*\).
+        The word \(ab|bbb \in T^*\) but this cannot be factored with only \(ab,bb\) so \(ab|bbb \notin S^*\).
+        \item This shows the principle of equality of sets.
+    \end{enumerate}
+\end{solution}
+
+\begin{problem}{\#4 (15 points)}
+    Let \(\Sigma=\{a,b\}\).
+    Give recursive definitions for the following languages over \(\Sigma\).
+    \begin{enumerate}[label=\alph*)]
+        \item The language BB of all words containing the substring \(bb\).
+        \item The language NOTBB of all words not containing the substring \(bb\).
+        \item Give recursive definition of the set EVEN.
+        Show that all the numbers in it end in the digits 0, 2, 4, 6, or 8.
+        \item Give a recursive definition of the set \(\text{ODD}=\{1,3,5,7,\ldots\}\).
+        \item Give a recursive definition for the set of strings of digits 0,1,2,3,\ldots, 9 that cannot start with the digit 0.
+    \end{enumerate}
+\end{problem}
+\vspace{2em}
+\begin{solution}
+    \begin{enumerate}[label=\alph*)]
+        \item BB is defined by the rules:
+        \begin{enumerate}[label=\arabic*]
+            \item The string \(bb\) is in BB.
+            \item If \(x\) is in BB, any string of a' or b's concatenated with \(x\) is in BB.
+            \item The only elements of BB are those that are constructed by following rules 1 and 2.
+        \end{enumerate}
+        \item NOTBB is defined by the rules:
+        \begin{enumerate}[label=\arabic*]
+            \item \(a \in \text{NOTBB}\) and \(b \in \text{NOTBB}\)
+            \item If \(x \in \text{NOTBB}\) and \(x\) ends with \(a\), add \(a\) or \(b\).
+            If \(x\) ends with \(b\) add \(a\).
+            \item The only elements in NOTBB are the ones that are constructed by following rules 1 and 2
+        \end{enumerate}
+        \item EVEN is defined by the rules:
+        \begin{enumerate}[label=\arabic*]
+            \item \(2 \in \text{EVEN}\)
+            \item If \(x \in \text{EVEN}\), \(x+2 \in \text{EVEN}\).
+            \item The only elements in EVEN are the ones that are constructed by following rules 1 and 2.
+        \end{enumerate}
+        \(\text{EVEN} = \{2,4,6,8,10,12,\ldots\}\), any element of EVEN will end in \((0,2,4,6,8)\).
+        \item ODD is defined by the rules:
+        \begin{enumerate}[label=\arabic*]
+            \item \(1 \in \text{ODD}\)
+            \item If \(x \in \text{ODD}\), \(x+2 \in \text{ODD}\)/
+            \item The only elements in ODD are the ones that are constructed by following rules 1 and 2.
+        \end{enumerate}
+        \item String of digits not starting with 0 is defined by the rules:
+        \begin{enumerate}[label=\arabic*]
+            \item \((1,2,3,4,5,6,7,8,9) \in \text{DIGITS}\)
+            \item If \(w\) is any word in DIGITS, then the concatenations:\\\(w0,w1,w2,w3,w4,w5,w6,w7,w8,w9\) are also in DIGITS.
+            \item The only elements in DIGITS are the ones that are constructed by following rules 1 and 2.
+        \end{enumerate}
+    \end{enumerate}
+\end{solution}
+
+\begin{problem}{\#5 (5 points)}
+    In the given recursive definition for the language PALINDROME over the alphabet \(\Sigma = \{a,b\}\):
+    \begin{enumerate}
+        \item \(a, b \in \text{PALINDROME}\)
+        \item if \(x\) is in PALINDROME, then \(axa\) and \(bxb\) are also in PALINDROME.
+    \end{enumerate}
+    All the words in the language defined above have an odd length and so it is not all of PALINDROME.
+    Fix this problem.
+\end{problem}
+\vspace{2em}
+\begin{solution}
+    Adding \(aa\) and \(bb\) to the base case will fix the odd length issue.
+    \(aa\) and \(bb\) will create only even members of PALINDROME, \((aa,bb,aaaa,baab,abba,bbbb,\ldots)\).
+    The combination of even PALINDROME and odd PALINDROME creates a complete set of PALINDROME. 
+\end{solution}

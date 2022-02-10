@@ -1,0 +1,204 @@
+\documentclass{standalone}
+
+\usepackage{pgf}
+\usepackage{tikz}
+\usetikzlibrary{arrows,automata,positioning,shapes.multipart}
+
+\tikzset{every loop/.style={min distance=18mm}}
+\tikzset{%node distance=8cm,
+	every state/.style={
+		semithick,
+		fill=gray!10,
+		minimum size=2.5cm
+	},
+	initial text={},
+	double distance=2pt,
+	every edge/.style={
+		draw,
+		->,>=stealth',
+		auto,
+		semithick
+	}
+}
+
+\begin{document}
+	\begin{tikzpicture}[every text node part/.style={align=center}]
+		
+		\node[initial, state] (call0) at (0,0) {Wait for\\call 0 from\\above};
+		\node[state] (ack0) at (6,0) {Wait for\\ACK or\\NAK 0};
+		\node[state] (waitb0) at (16,-1) {Wait for\\B};
+		\node[state] (waitc0) at (11,-4) {Wait for\\C};
+		\node[state] (call1) at (14,-8) {Wait for\\call 1 from\\above};
+		\node[state] (ack1) at (2,-12) {Wait for\\ACK or\\NAK 1};
+		\node[state] (waitb1) at (-4,-5) {Wait for\\B};
+		\node[state] (waitc1) at (0,-6) {Wait for\\C};
+
+		
+		\draw (call0) edge[bend left] node{\begin{tabular}{l}
+			rdt\_send(data)\\
+			\hline
+			sndpckt=make\_pkt(0,data,checksum)\\
+			udt\_send(sndpkt,B)\\
+			udt\_send(sndpkt,C)
+			\end{tabular}}(ack0);
+		
+		\draw (ack0) edge[bend left] node{
+			\begin{tabular}{l}
+				rdt\_rcv(rcvpkt)\\
+				\&\& notcurrupt(rcvpkt)\\
+				\&\& isACK(rcvpkt)\\
+				pkt\_sender(rcvpkt) = C\\
+				\hline
+			\end{tabular}} (waitb0);
+		\draw (ack0) edge[bend right] node[left]{
+			\begin{tabular}{l}
+				rdt\_rcv(rcvpkt)\\
+				\&\& notcurrupt(rcvpkt)\\
+				\&\& isACK(rcvpkt)\\
+				pkt\_sender(rcvpkt) = B\\
+				\hline
+			\end{tabular}} (waitc0);
+
+		\draw (waitc0) edge[bend right] node[left]{
+			\begin{tabular}{l}
+				rdt\_rcv(rcvpkt)\\
+				\&\& notcurrupt(rcvpkt)\\
+				\&\& isACK(rcvpkt)\\
+				pkt\_sender(rcvpkt) = C\\
+				\hline
+			\end{tabular}} (call1);
+
+		\draw (waitb0) edge[bend left] node{
+			\begin{tabular}{l}
+				rdt\_rcv(rcvpkt)\\
+				\&\& notcurrupt(rcvpkt)\\
+				\&\& isACK(rcvpkt)\\
+				pkt\_sender(rcvpkt) = B\\
+				\hline
+			\end{tabular}} (call1);
+
+		\draw (waitb0) edge[in=15,out=345,loop] node[right]{
+			\begin{tabular}{l}
+				rdt\_rcv(rcvpkt) \&\&\\
+				(corrupt(rcvpkt) \|\\
+				isNAK(rcvpkt))\\
+				\hline
+				udt\_send(sndpkt,B)\\
+				udt\_send(sndpkt,C)
+			\end{tabular}} (waitb0);
+		\draw (ack0) edge[in=90,out=60,loop] node[above right]{
+			\begin{tabular}{l}
+				rdt\_rcvpkt(rcvpkt) \&\&\\
+				(corrupt(rcvpkt) \|\\
+				isNAK(rcvpkt))\\
+				\hline
+				udt\_send(sndpkt,B)\\
+				udt\_send(sndpkt,C)
+			\end{tabular}} (ack0);
+
+		\draw (waitc0) edge[in=75,out=105,loop] node{
+			\begin{tabular}{l}
+				rdt\_rcvpkt(rcvpkt) \&\&\\
+				(corrupt(rcvpkt) \|\\
+				isNAK(rcvpkt))\\
+				\hline
+				udt\_send(sndpkt,B)\\
+				udt\_send(sndpkt,C)
+			\end{tabular}} (waitc0);
+	%	\draw (ack0) edge[bend left] node{
+	%		\begin{tabular}{l}
+	%			(rdt\_rcv(rcvpktB)\\
+	%			\&\& notcorrupt(rcvpktB)\\
+	%			\&\& isACK(rcvpktB)) \&\&\\
+	%			(rdt\_rcv(rcvpktC)\\
+	%			\&\& notcorrupt(rcvpktC)\\
+	%			\&\& isACK(rcvpktC)) \\
+	%			\hline
+	%			$\wedge$
+	%		\end{tabular}} (call1);
+		\draw (call1) edge[bend left] node{
+			\begin{tabular}{l}
+				rdt\_send(data)\\
+				\hline
+				sndpkt=make\_pkt(1,data,checksum)\\
+				udt\_send(sndpkt,B)\\
+				udt\_send(sndpkt,C)
+			\end{tabular}} (ack1);
+	%	\draw (ack1) edge[loop left] node{
+	%		\begin{tabular}{l}
+	%			(rdt\_rcvpkt(rcvpktB) \&\&\\
+	%			(corrupt(rcvpktB) \|\\
+	%			isNAK(rcvpktB))) \|\\
+	%			(rdt\_rcvpkt(rcvpktC)\&\&\\
+	%			(corrupt(rcvpktC)\|\\
+	%			isNAK(rcvpktC)))\\
+	%			\hline
+	%			udt\_send(sndpkt,B)\\
+	%			udt\_send(sndpkt,C)
+	%		\end{tabular}} (ack1);
+	%	\draw (ack1) edge[bend left] node{
+	%		\begin{tabular}{l}
+	%			(rdt\_rcv(rcvpktB)\\
+	%			\&\& notcorrupt(rcvpktB)\\
+	%			\&\& isACK(rcvpktB)) \&\&\\
+	%			(rdt\_rcv(rcvpktC)\\
+	%			\&\& notcorrupt(rcvpktC)\\
+	%			\&\& isACK(rcvpktC)) \\
+	%			\hline
+	%			$\wedge$
+	%		\end{tabular}} (call0);
+
+			\draw (waitc1) edge[in=15,out=345,loop] node[right]{
+			\begin{tabular}{l}
+				rdt\_rcvpkt(rcvpkt) \&\&\\
+				(corrupt(rcvpkt) \|\\
+				isNAK(rcvpkt))\\
+				\hline
+				udt\_send(sndpkt,B)\\
+				udt\_send(sndpkt,C)
+			\end{tabular}} (waitc1);
+		\draw (waitb1) edge[in=195,out=165,loop] node[left]{
+			\begin{tabular}{l}
+				rdt\_rcv(rcvpkt) \&\&\\
+				(corrupt(rcvpkt) \|\\
+				isNAK(rcvpkt))\\
+				\hline
+				udt\_send(sndpkt,B)\\
+				udt\_send(sndpkt,C)
+			\end{tabular}} (waitb1);
+
+		\draw (waitb1) edge[bend left] node{
+			\begin{tabular}{l}
+				rdt\_rcv(rcvpkt)\\
+				\&\& notcurrupt(rcvpkt)\\
+				\&\& isACK(rcvpkt)\\
+				pkt\_sender(rcvpkt) = B \\
+				\hline
+			\end{tabular}} (call0);
+			\draw (waitc1) edge[bend left] node[right]{
+			\begin{tabular}{l}
+				rdt\_rcv(rcvpkt)\\
+				\&\& notcurrupt(rcvpkt)\\
+				\&\& isACK(rcvpkt)\\
+				pkt\_sender(rcvpkt) = C\\
+				\hline
+			\end{tabular}} (call0);
+		\draw (ack1) edge[bend left] node[right]{
+			\begin{tabular}{l}
+				rdt\_rcv(rcvpkt)\\
+				\&\& notcurrupt(rcvpkt)\\
+				\&\& isACK(rcvpkt)\\
+				pkt\_sender(rcvpkt) = B\\
+				\hline
+			\end{tabular}} (waitc1);
+
+		\draw (ack1) edge[bend left] node{
+			\begin{tabular}{l}
+				rdt\_rcv(rcvpkt)\\
+				\&\& notcurrupt(rcvpkt)\\
+				\&\& isACK(rcvpkt)\\
+				pkt\_sender(rcvpkt) = C\\
+				\hline
+			\end{tabular}} (waitb1);
+	\end{tikzpicture}
+\end{document}

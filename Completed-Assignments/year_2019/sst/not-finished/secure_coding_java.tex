@@ -1,0 +1,71 @@
+\documentclass[a4paper]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{textcomp}
+\usepackage[english]{babel}
+\usepackage{amsmath, amssymb}
+
+
+%figure support
+\usepackage{import}
+\usepackage{xifthen}
+\pdfminorversion=7
+\usepackage{pdfpages}
+\usepackage{transparent}
+\newcommand{\incfig}[1]{%
+	\def\svgwidth{\columnwidth}
+	\import{./figures/}{#1.pdf_tex}
+}
+\graphicspath{ {./figures/} }
+\pdfsuppresswarningpagegroup=1
+
+\begin{document}
+	\title{Java: Secure Coding Practices}
+	\author{Brandon Thompson}
+	\maketitle
+	
+	\section{Ensure that sensitive data is kept secure}
+	\texttt{openFileOutput(''someFile'', MODE\_WORLD\_READABLE);}\\
+	Problem: creates a file that is world readable. Any application could read the file and access any data.
+	\\
+	\texttt{openFileOutput(''someFile'', MODE\_PROVATE);}
+
+	\section{Detect and Handle File Related Errors}
+	\texttt{File file = new File(''ABCfile'');\\file.delete()}\\
+	Problem: delete a specified file but gives no indication of it ssuccess.
+	\texttt{File.delete()} throws a \texttt{SecurityException}\\
+	\\
+	\texttt{File file = new File}
+	
+	\section{Generate Strong Random Numbers}
+	\texttt{Random number = new Random();\\
+		//\ldots\\
+		for (int i = 0; i < 20; i++) \{\\
+			\ \ \ \ int n = number.nextInt(21);\\
+	\ \ \ \ System.out.println(n);}\\}
+	Produce an indentical sequence 
+
+
+	\section{Dont use the Object.equals() method to compare arrays}
+	\texttt{int[] arr1 = new int[20];\\int[] arr2 = new int[20];\\
+	System.out.println(arr.equals(arr2));}\\
+	\\
+	\texttt{int[] arr1}\\
+	Problem: Object.equals() compares only 
+
+	\section{Validate Method Arguments}
+	\texttt{private Object myState = null;\\ \\void setState(Object state) \{\\myState = state;\\\}}
+
+	\section{Ensure that division and remainder operations do no result in divide by zero errors.}
+	\texttt{long num1, num2, result;\\result = num1 / num2;\\result = num1 \% num2;}\\
+	Problem: can result in a division-by-zero error.\\
+	\\
+	\texttt{long num1, num2, result}
+
+	\section{Do not attempt comparisons with NaN}
+	\texttt{double x = 0.0}
+
+	\section{Limit Accessibility of Fields}
+	\texttt{public class Widget \{\\public int total;\\\ldots\\public void add() \{\ldots\}}
+\end{document}

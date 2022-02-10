@@ -1,0 +1,60 @@
+\documentclass[a4paper]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{textcomp}
+\usepackage[english]{babel}
+\usepackage{amsmath, amssymb}
+
+
+%figure support
+\usepackage{import}
+\usepackage{xifthen}
+\pdfminorversion=7
+\usepackage{pdfpages}
+\usepackage{transparent}
+\newcommand{\incfig}[1]{%
+	\def\svgwidth{\columnwidth}
+	\import{./figures/}{#1.pdf_tex}
+}
+
+\pdfsuppresswarningpagegroup=1
+
+\begin{document}
+	\title{Test 1: Answers}
+	\maketitle
+	\begin{enumerate}
+		\item Depth-First search is a complete search method. F
+		\item Space complexity of a search method cannot be represented by the big-O notation. F
+		\item Steepest ascent hill climbing wont be trapped by a local optimal solution. F
+		\item The best-first search will never miss the goal, if there is one. T
+		\item An admissible heuristic might overestimate the come of moving from a given state to the goal state. F
+		\item In a semantic net, the links represent objects and the nodes represent relationships between those objects. F
+		\item A good frame knowledge representation can be easily translated into first order predicate knowledge and be managed by rule-based system. F
+		\item Inheritance allows us to specify properties of a super class and then define a subclass to inherit the properties from its super class. T
+		\item A frame system consists of a set of frame that are connected together by slot values. T
+		\item Frames are object-oriented knowledge representation that can be used to build intelligent systems. T
+		\item The semantic net approach allows all information about a particular object to be stored together. F
+		\item In frame knowledge representation, a when-needed procedure will run automatically. F
+		\item By applying goal reduction, a given problem can be represented as a goal tree which will lead to a none-recursive solution. F
+		\item Goal driven inference tends to infer more than necessary. F
+		\item The Chinese room experiment was designed to promote the idea of strong AI. F
+		\item the followers of weak AI believe that a computer can fall in love with a human. F
+		\item Strong method problem solving depends on the weak method. T
+		\item The expert system shell is an implementation of weak method. T
+		\item In the early history of AI, the General Problem Solver (GPS) was an attempt to use strong methods to solve a wide range of general problems. F
+		\item The propositional and predicate logic off logical reason are based on the logic invented by Aristotle. T
+	\end{enumerate}
+%\pagebreak
+\begin{figure}[ht]
+   Search Tree for part 2 of test 1.
+   \centering
+   \incfig{tree}
+   \caption{Search Tree, Goal Node I}
+   \label{fig:tree}
+\end{figure}
+\\
+Steepest Ascent hill climbing: A, C, H\\
+Best First Search: A, C, H, G, D, I\\
+Beam Search with beam width set to 2: A, C, H, G
+\end{document}

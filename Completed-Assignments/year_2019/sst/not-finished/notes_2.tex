@@ -1,0 +1,65 @@
+\documentclass[a4paper]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{textcomp}
+\usepackage[english]{babel}
+\usepackage{amsmath, amssymb}
+
+
+%figure support
+\usepackage{import}
+\usepackage{xifthen}
+\pdfminorversion=7
+\usepackage{pdfpages}
+\usepackage{transparent}
+\newcommand{\incfig}[1]{%
+	\def\svgwidth{\columnwidth}
+	\import{./figures/}{#1.pdf_tex}
+}
+
+\pdfsuppresswarningpagegroup=1
+
+\begin{document}
+	\title{Chapter 5: Software requirements}
+	\maketitle
+	Requirements are usually given by the BA's (Business analysts) and told ''ask if you have any questions''
+	\begin{itemize}
+		\item Understand given requirements.
+
+		\item Analyze similar products or services.
+		\item Interpret with your peers.
+	\end{itemize}
+	\\
+	%high and medium level requirements
+	gathering security requirements becoming just as important as functionality.
+\\
+	identify assets in the requirements.
+	\begin{description}
+		\item[Asset:] anything of value to the stakeholders.
+	\end{description}
+	\begin{itemize}
+		\item When reviewing use case diagram, look for assets.
+	\end{itemize}
+
+	\section{Devise Misuse Cases}
+	In software, every function that the application's software provides is also an open
+	opportunity\ldots\\
+	This is a hard thing to do because:
+	\begin{itemize}
+		\item little methodologies in this area
+		\item \ldots
+	\end{itemize}
+	%every use case will have a corresponding misuse case (the relevant attack for the use case)
+	In order to devise the misuse cases you must: 
+	\begin{itemize}
+		\item know your enemy
+		\item carry out relevant attacks
+		\item design countermeasures for relevant attacks
+	\end{itemize}
+	\\
+	Misuse case actors could be an outside person, an inside person or an automated machine.\\
+	for carrying out the relevant attacks, use the list of attacks previously (XSS, SQL Injection).\\
+	Every countermeasure is a new requirement in the requirements list. Implementing a log
+	in counter will prevent a brute force attack.% add other examples
+\end{document}

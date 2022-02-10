@@ -1,0 +1,307 @@
+\documentclass[a4paper]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{textcomp}
+\usepackage[english]{babel}
+\usepackage{amsmath, amssymb}
+
+
+%figure support
+\usepackage{import}
+\usepackage{xifthen}
+\pdfminorversion=7
+\usepackage{pdfpages}
+\usepackage{transparent}
+\newcommand{\incfig}[1]{%
+	\def\svgwidth{\columnwidth}
+	\import{./figures/}{#1.pdf_tex}
+}
+
+\pdfsuppresswarningpagegroup=1
+
+\topmargin -.5in
+\textheight 9in
+\oddsidemargin -.125in
+\evensidemargin -.125in
+\textwidth 6.5in
+
+\begin{document}
+\title{Software Security Testing Midterm Review}
+\author{Brandon Thompson}
+\maketitle
+
+	\begin{enumerate}
+		\item CIA triad
+			\begin{itemize}
+				\item Confidentiality
+				\item Integrity
+				\item Availability
+			\end{itemize}
+		\item Software assurance definition
+			\begin{itemize}
+				\item Definition: The level of confidence that Software is free
+					from vulnerabilities and functions in the intended manner.
+			\end{itemize}
+		\item 4 goals of software assurance 
+			\begin{itemize}
+				\item Trustworthy: Ensure no exploitable vulnerabilities or
+					malicious logic exists in software.
+				\item Dependability: Ensure the software, when executed,
+					functions as intended.
+				\item Survivability: Rugged and resilient
+					\begin{itemize}
+						\item If compromised, damage will be
+							minimum.
+						\item Will recover quickly to an acceptable capacity.
+					\end{itemize}
+				\item Conformance: Ensure Processes and products conform to requirements,
+					standards, and procedures.
+			\end{itemize}
+		\item Computer security terminologies
+			\begin{description}
+				\item[Adversary (threat agent)] - An entity that attacks, or is a threat
+					to, a system.
+				\item[Attack] - An assault on system security that derives from an
+					intelligent threat; a deliberate attempt to evade security
+					services and violate security policy of a system.
+				\item[Countermeasure] - An action, device, procedure, or technique
+					that reduces a threat, vulnerability or attack.
+					\begin{itemize}
+						\item By eliminating or preventing it (prevent)
+						\item By minimizing the harm it can cause (recover)
+						\item By discovering and reporting it so that
+							corrective action can be taken (detect)
+					\end{itemize}
+				\item[Threat] - A potential for violation of security, which exists
+					when there is a circumstance, capability, action, or event
+					that could breach security and cause harm.
+				\item[Vulnerability] - Flaw or weakens in a system's design, implementation,
+					or operation and management that could be exploited to violate the
+					system's security policy
+					\begin{itemize}
+						\item Can be corrupted (loss of integrity)
+						\item Can become leaky (loss of confidentiality)
+						\item Can become unavailable (loss of availability)
+					\end{itemize}
+				\item[Risk] - An expectation of loss expressed as the probability that
+					a particular threat will exploit a particular vulnerability
+					with a harmful result.
+					\begin{itemize}
+						\item Low: limited adverse effect.
+						\item Moderate: serious adverse effect.
+						\item High: severe or catastrophic adverse effect.
+					\end{itemize}
+				\item[Security Policy] - A set of rules an practices that specify how a
+					system or organization provides security services to protect
+					sensitive and critical system resources.
+				\item[System Resource (Asset)] - Data; a service provided by the system,
+					a system capability; an item of system equipment; a facility that
+					houses system operations and equipment.
+					\begin{itemize}
+						\item Hardware
+						\item Software
+						\item Data
+						\item Communication facilities and networks.
+					\end{itemize}
+			\end{description}
+		\item Types of General attacks
+			\begin{description}
+				\item[Active attack] is a network exploit in which a hacker attempts
+					to make changes to data on the target.
+				\item[Passive attack] is a network attack in which a system is
+					monitored/scanned for open ports and vulnerabilities to gain
+					information about the target.
+				\item[Inside attack] is a malicious attack performed on a network or
+					computer system by a person with authorized system access.
+				\item[Outside attack] is initiated from outside the perimeter, by
+					an unauthorized or illegitimate user of the system.
+			\end{description}
+		\item Types of specific attacks
+			\begin{itemize}
+				\item Social Engineering Attacks
+					\begin{description}
+						\item[Organization penetration] is tricking people at
+							work into giving access to company resources.
+						\item[Phishing] creating a malicious web site and 
+							making it look like some other company's.
+						\item[Spam] User clicks on email to read, email
+							can install malware.
+						\item[Spoofing] Change the ''From'' address in messages.
+						\item[Man in the middle] unauthorized user requests
+							or modifies messages between two parties.
+					\end{description}
+				\item Attacks against software
+					\begin{description}
+						\item[Cross-site scripting (XSS):] embed JS functions
+							into HTML data element, and redisplayed on the
+							web page as hyperlink. Once clicked, users will
+							be directed to other websites without knowing.
+						\item[Buffer overflows:] While writing data to a buffer,
+							overruns the buffer's boundary and overwrites
+							adjacent memory location.
+						\item[SQL code injection:] Attack on DB web server that
+							allows SQL statements to come in the application
+							undetected.
+						\item[Time/Logic bombs:] execute malicious code based
+							on certain time or event.
+						\item[Back door:] Bypass the application's security
+							mechanism and uses the application resources
+							to view or steal information.
+					\end{description}
+				\item Attacks against the supporting infrastructure
+					\begin{description}
+						\item[Denial of service (DOS):] Consume shared
+							resources and compromise the ability of
+							authorized users to access/use those resources.
+						\item[Virus:] a program/code that replicates by being
+							copied. A virus attaches itself to and becomes
+							part of another program.
+						\item[Worm:] A standalone malware computer program that
+							replicates itself in order to spread to other
+							computers. Often, it uses a computer network to
+							spread itself.
+						\item[Trojan:] Provide remote access to a system through
+							a back door/open port.
+						\item[Spyware:] software installed on a machine that
+							secretly gathers information about user activity.
+						\item[Adware:] a program that is unknowingly installed on
+							the PC and produces ads while executing. Many
+							adware come with spyware included.
+					\end{description}
+				\item Physical attacks
+					
+			\end{itemize}
+		\item How to ensure quality/security in the cube
+			\begin{itemize}
+				\item Know the enemy
+					\begin{itemize}
+						\item Know weak areas of the application and where attackers
+							are most likely going to attack first.
+						\item Know who would want to attack your software and why.
+						\item Know what types of resources would be needed by attackers
+							such as tools, privileges, and time slots.
+						\item Know how to build countermeasures.
+					\end{itemize}
+				\item Prevent social engineering
+					\begin{itemize}
+						\item Verify callers
+						\item Only give information to identified people.
+						\item Share information on a need-to-know basis.
+						\item watch out for shoulder surfing.
+					\end{itemize}
+				\item Clean up the clutter
+					\begin{itemize}
+						\item Do not keep sticky notes with passwords on them
+							in or around your desk.
+						\item Delete old and unnecessary hard and soft documents.
+					\end{itemize}
+				\item Stay current
+					\begin{itemize}
+						\item Keep informed of the latest software attacks.
+					\end{itemize}
+			\end{itemize}
+		\item Principles and concepts of secure software
+			\begin{itemize}
+				\item Secure the weakest link
+					\begin{itemize}
+						\item The weakest part of the system will most likely be
+							attacked first.
+					\end{itemize}
+				\item Defense in depth
+					\begin{itemize}
+						\item Multiple layers of different types of protection
+							provide substantially better protection.
+						\item Goal is to limit access to certain features of
+							the application.
+					\end{itemize}
+				\item Fail securely
+					\begin{itemize}
+						\item What happens when the system goes down.
+						\item Address error-handling issues appropriately.
+						\item Degrade peacefully.
+					\end{itemize}
+				\item Least privilege
+					\begin{itemize}
+						\item Give users the least amount of privilege required
+							to perform the use case.
+						\item Applications that need access to other system
+							resources; grant only what is needed.
+					\end{itemize}
+				\item Keep it simple
+					\begin{itemize}
+						\item Keep security simple and keep the application simple.
+						\item Keep the design simple.
+						\item Keep the database and code as simple as possible.
+					\end{itemize}
+				\item Secrets are not kept
+					\begin{itemize}
+						\item Binary code is not secure code.
+						\item Do not share passwords.
+						\item Do not place hard-coded values in code.
+						\item Place secrets in external resources e.g., DB.
+						\item Remove comments that reveal secrets.
+					\end{itemize}
+				\item Complete mediation
+					\begin{itemize}
+						\item Access to every object must be checked for authority.
+					\end{itemize}
+				\item Separation of privilege
+					\begin{itemize}
+						\item System should not grant permission based on single
+							condition.
+						\item Company checks over \$75,000 need to be signed
+							by two officers.
+					\end{itemize}
+			\end{itemize}
+		\item Principles and concepts of quality software
+			\begin{itemize}
+				\item Understandability
+					\begin{itemize}
+						\item Variables given meaningful names.
+						\item Logic and loops coded an easy to follow way.
+						\item If a person does not understand the programming
+							language, they should be able to follow the logic.
+					\end{itemize}
+				\item Flexibility and reusability
+					\begin{itemize}
+						\item Can the code be modified easily without affecting
+							a lot of other modules and programs?
+						\item Can the code be reused or other purposes?
+						\item Repeatedly used blocks of code should be made into
+							subroutines.
+					\end{itemize}
+				\item Readability and capability
+					\begin{itemize}
+						\item Is code so long that a person gets lost trying to
+							follow the execution path?
+						\item Are inputs validated before use?
+					\end{itemize}
+				\item Maintainability and testability
+				\item Usability and reliability
+					\begin{itemize}
+						\item Is there adequate online help?
+						\item Is a user manual provided?
+						\item Are meaningful error messages provided?
+						\item Will the software perform when needed?
+						\item Is exception handling provided?
+					\end{itemize}
+			\end{itemize}
+		\item Difference between authorization and authentication
+			\begin{description}
+				\item[Authorization:] Ensuring that the user has the appropriate role
+					and privilege to view data.
+				\item[Authentication:] Ensuring that the user is who he or she claims
+					to be and that the data comes from the appropriate place.
+			\end{description}
+		\item Devise misuse cases
+			\begin{enumerate}
+				\item 
+			\end{enumerate}
+		\item Definition of assets
+			\begin{description}
+				\item[Asset:] Anything of value to the stakeholders.
+			\end{description}
+		\item ATM case study
+	\end{enumerate}
+\end{document}

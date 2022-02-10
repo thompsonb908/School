@@ -1,0 +1,113 @@
+\documentclass[a4paper]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{textcomp}
+\usepackage[english]{babel}
+\usepackage{amsmath, amssymb}
+
+
+%figure support
+\usepackage{import}
+\usepackage{xifthen}
+\pdfminorversion=7
+\usepackage{pdfpages}
+\usepackage{transparent}
+\newcommand{\incfig}[1]{%
+	\def\svgwidth{\columnwidth}
+	\import{./figures/}{#1.pdf_tex}
+}
+\graphicspath{ {./figures/} }
+\pdfsuppresswarningpagegroup=1
+
+\begin{document}
+	\title{CEN4088.01 Lab 4 Due 10/21/19}
+	\author{Brandon Thompson 5517}
+	\maketitle
+
+	\begin{figure}[h!]
+		\centering
+		\includegraphics[width=0.8\textwidth]{1_1_16}
+		\caption{Open ports of victim machine.}
+		\label{fig:1}
+	\end{figure}
+	
+	\begin{figure}[h!]
+		\centering
+		\includegraphics[width=0.8\textwidth]{1_2_21}
+		\caption{Details of 55523 vulnerability.}
+		\label{fig:2}
+	\end{figure}
+
+	\begin{figure}[h!]
+		\centering
+		\includegraphics[width=0.2\textwidth]{1_3_10}
+		\caption{Result of \texttt{whoami} command after metasploit has given access to victim machine.}
+		\label{fig:3}
+	\end{figure}
+
+	\begin{figure}[h!]
+		\centering
+		\includegraphics[width=0.8\textwidth]{1_3_12}
+		\caption{Result of \texttt{ifconfig} command after acquiring root access.}
+		\label{fig:4}
+	\end{figure}
+
+	\begin{figure}[h!]
+		\centering
+		\includegraphics[width=0.8\textwidth]{1_3_14}
+		\caption{List of ip tables and rules after acquiring root access.}
+		\label{fig:5}
+	\end{figure}
+
+	\begin{figure}[h!]
+		\centering
+		\includegraphics[width=0.8\textwidth]{1_3_20}
+		\caption{Solution to the \texttt{vstftpd} vulnerability.}
+		\label{fig:6}
+	\end{figure}
+
+	\begin{figure}[h!]
+		\centering
+		\includegraphics[width=0.8\textwidth]{2_1_6}
+		\caption{List of open ports given from the Zenmap tool.}
+		\label{fig:7}
+	\end{figure}
+
+	\begin{figure}[h!]
+		\centering
+		\includegraphics[width=0.8\textwidth]{2_2_8}
+		\caption{List of critical vulnerabilities given by Nessus web client.}
+		\label{fig:8}
+	\end{figure}
+
+	\begin{figure}[h!]
+		\centering
+		\includegraphics[width=0.8\textwidth]{2_2_15}
+		\caption{Details of 55523 vulnerability given by Nessus web client.}
+		\label{fig:9}
+	\end{figure}
+
+	\begin{figure}[h!]
+		\centering
+		\includegraphics[width=0.3\textwidth]{2_3_16}
+		\caption{Contents of \texttt{/home} of Metasploitable machine.}
+		\label{fig:10}
+	\end{figure}
+
+	\begin{figure}[h!]
+		\centering
+		\includegraphics[width=0.8\textwidth]{2_3_19}
+		\caption{List of iptables and rules of Metasploitable machine.}
+		\label{fig:11}
+	\end{figure}
+
+	\begin{figure}[h!]
+		\centering
+		\includegraphics[width=0.8\textwidth]{2_3_24}
+		\caption{**Remote Hack** message in log file of Metasploitable machine.}
+		\label{fig:12}
+	\end{figure}
+
+
+\end{document}

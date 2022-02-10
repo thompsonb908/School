@@ -1,0 +1,60 @@
+\documentclass[a4paper]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{textcomp}
+\usepackage[english]{babel}
+\usepackage{amsmath, amssymb}
+
+
+%figure support
+\usepackage{import}
+\usepackage{xifthen}
+\pdfminorversion=7
+\usepackage{pdfpages}
+\usepackage{transparent}
+\newcommand{\incfig}[1]{%
+	\def\svgwidth{\columnwidth}
+	\import{./figures/}{#1.pdf_tex}
+}
+
+\pdfsuppresswarningpagegroup=1
+
+\begin{document}
+	\author{Brandon Thompson}
+	\title{Chapter 1}
+	\maketitle
+
+	\medskip
+	
+	Artificial intelligence can be broken into two categories of thought.
+	\begin{description}
+		\item[Strong AI] 
+			is the concept that given enough processing power and
+			information a computer can think like a human.
+			Strong AI has never been accomplished and is more of a long term sci-fi goal.
+		
+		\item[Weak AI]
+                        is the alternative (and much more attainable) concept
+                        to strong AI. Intelligent behavior can be modeled and follow by
+                        a computer.
+	\end{description}	
+	
+	To create AI, we use different types of methods to process the problems and the information.
+	
+	\begin{description}
+		\item[Weak Methods]
+			focus on inferencing through logic and automated reasoning. This does not
+			necessarily include any real knowledge about the problem domain. Early
+			research was entirely focused on this area.
+
+		\item[Strong Methods] depend on the system being given a large amount of information
+                        in the problem domain. Strong methods depend on weak methods because
+                        we need a way to sort all of the information.
+	\end{description}
+	
+	Production systems use a combination of weak method expert system shells to perform
+	inference, but strong method rules to encode the knowledge.
+	
+
+\end{document}

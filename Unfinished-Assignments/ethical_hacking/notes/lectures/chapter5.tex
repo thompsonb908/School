@@ -1,0 +1,79 @@
+\section{Scanning}
+\subsection{What is Scanning}
+
+Scanning is a process that involves engaging and probing a target network with the intent of revealing useful information of networks and systems.
+Combined with the information from footprinting, it is possible to get a decent picture of a target organization network-map.
+
+With the rapid growth of networks and turnover of personnel, scanning can sometimes give a better network graph that the client can provide.
+
+
+\subsection{Types of Scanning}
+\begin{itemize}
+    \item Port Scanning\\
+        Sending packets to a target computer with the intent of learning about the port status.
+    \item Network Scanning\\
+        Locate mostly all live hosts on a network.
+    \item Vulnerability Scanning\\
+        Used to identify weaknesses or vulnerabilities on a target system.
+\end{itemize}
+\subsection{Port Scanning}
+
+Port scanning program / tool report:
+\begin{itemize}
+    \item Open Ports
+    \begin{itemize}
+        \item Allows access to applications / services and can be vulnerable to attack.
+    \end{itemize}
+    \item Closed Ports
+    \begin{itemize}
+        \item Does not allow entry or access to a service.
+    \end{itemize}
+    \item Filtered Ports
+    \begin{itemize}
+        \item Open, but might indicate that a firewall is being used to allow specified traffic into or out of the network, through that port.
+    \end{itemize}
+\end{itemize}
+
+Is port scanning legal> Some states / countries consider it legal.
+
+\subsubsection{Types of port scans}
+\begin{enumerate}
+    \item Connect Scan (Full-open scan)
+    \begin{itemize}
+        \item Utilizes three way handshake
+        \item Completed handshake indicates open port
+        \item 
+    \end{itemize}
+    \item SYN scan (Half scan)
+    \begin{itemize}
+        \item Starts like a full scan but does not complete the final step of the handshake.
+        \item Lower chance of being logged.
+    \end{itemize}
+    \item FIN scan
+    \item XMAS Scan
+    \begin{itemize}
+        \item All flags enabled, combination of flags is illogical and illegal.
+        \item 
+    \end{itemize}
+    \item NULL Scan
+    \item ACK scan
+\end{enumerate}
+
+\subsection{Network Scanning}
+Network scannign is for checking live hosts.
+\begin{enumerate}
+    \item Wardialing is the other forms of scanning in that it simply dials a block of phone number using a standard modem to locate systems that also have a modern attached and accept connections.
+    Modems are still in use so a hacker can use
+    \item pinging
+    \item ping sweep
+\end{enumerate}
+
+\subsection{Vulnerability Scanning}
+
+\subsection{Banner Grabbing}
+
+\subsection{Scanning anonymity using proxy}
+
+\subsection{Mapping the network}
+
+\subsection{Packet crafting and manipulation}

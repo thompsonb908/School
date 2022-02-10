@@ -1,0 +1,89 @@
+\begin{problem}{\#1 (15 points)}
+    Construct a regular expression defining each of the following languages over the alphabet \(\Sigma=\{a,b\}\):
+    \begin{enumerate}[label=\alph*)]
+        \item The language of all words that do not begin with \(ba\).
+        \item The  language  of  all  words  in  which  the  total number of b’s is divisible by 3 no matter how they are distributed, such as \(bbabbaabab\).
+        \item All words that contain exactly 2 b’s or exactly 3 b’s, not more.
+        \item All words in which \(a\) appears tripled, if at all. This means that  every  clump of a’s contains 3 or 6 or 9 or 12 \ldots\ a’s.
+        \item All words that contain at least one of the strings \(S_1,S_2,S_3, \text{or} S_4\).
+    \end{enumerate}
+\end{problem}
+\vspace{2em}
+\begin{solution}
+    \begin{enumerate}[label=\alph*)]
+        \item \(a^*b^*\)\\Contains only a's or only b's or a's followed by b's, therefore the string \(ba\) should never appear.
+        \item \((a^*ba^*ba^*ba^*)^*\)
+        \item \(a^*(b+\Lambda)a^*ba^*ba^*\)
+        \item \(b^*(aaa)^*b^*\)\\Nothing was said about there being no a's so \((aaa)^*\) allows for only strings of b's or an empty string.
+        \item \((S_1+S_2+S_3+S_4)(S_1+S_2+S_3+S_4)^*\)
+    \end{enumerate}
+\end{solution}
+
+\begin{problem}{\#2 (15 points)}
+    Construct   a   regular   expression   defining   each   of   the following languages over the alphabet \(\Sigma=\{a,b\}\):
+    \begin{enumerate}[label=\alph*)]
+        \item All strings that end in a double letter.
+        \item All strings that do not end in a double letter.
+        \item All strings that have exactly one double letter in them.
+        \item All words in which the letter \(b\) is never tripled. This means that no word contains the substring \(bbb\).
+        \item All words in which \(a\) is tripled or \(b\) is tripled, but not both. This means each word contains the substring \(aaa\) or the substring \(bbb\) but not both.
+    \end{enumerate}
+\end{problem}
+\vspace{2em}
+\begin{solution}
+    \begin{enumerate}[label=\alph*)]
+        \item \((a+b)^*(aa+bb)\)
+        \item \((a+b)^*(ab+ba)+a+b+\Lambda\)
+        \item \((b+\Lambda)(ab)^*aa(ba)^*(b+\Lambda) + (a+\Lambda)(ba)^*bb(ab)^*(a+\Lambda)\)
+        \item \((\Lambda+b+bb)(a+ab+abb)^*\)
+        \item \((\Lambda+b+bb)(a+ab+abb)^*aaa(\Lambda+b+bb)(a+ab+abb)^*+\\(\Lambda+a+aa)(b+ba+baa)^*bbb(\Lambda+a+aa)(b+ba+baa)^*\)
+    \end{enumerate}
+\end{solution}
+
+\begin{problem}{\#3 (10 points)}
+    Let us consider the regular expression
+    \[(a+b)^*a(a+b)^*b(a+b)\]
+    Show that this is equivalent to
+    \[(a+b)^*ab(a+b)^*\]
+    In the sense that they define the same language.
+\end{problem}
+\vspace{2em}
+\begin{solution}
+    \((a+b)^*=\{\Lambda,a,b,aa,ab,bb,aaa,aab,aba,abb,bbb,\ldots\}\)\\
+    \(a(a+b)^* = \{a,aa,ab,aaa,aab,aba,\ldots\}\)\\
+    \(b(a+b) = \{ba,bb\}\)\\
+    \\
+    \((a+b)^* = \{\Lambda,a,b,aa,ab,bb,aaa,aab,aba,abb,bbb,\ldots\}\)\\
+    \(ab(a+b)^* = \{ab,aba,abb,abaa,abab,abbb,\ldots\}\)\\
+    \\
+    \(a(a+b)^*b(a+b) = ab(a+b)^*\)
+\end{solution}
+
+\begin{problem}{\#4 (5 points)}
+    If the only difference between \(L\) and \(L^*\) is the word \(\Lambda\), is the only difference between \(L^2\) and \(L^*\) the word \(\Lambda\)?
+    Show by example.
+\end{problem}
+\vspace{2em}
+\begin{solution}
+    No, if \(L=\{a,b,aa,ab,ba,bb,\ldots\}\) then \(L^*=\{\Lambda,a,b,aa,ab,ba,bb,\ldots\}\).\\
+    But \(L^2=\{aa,bb,aaaa,abab,baba,bbbb\}\) which does not include \(\{a,b\}\).
+\end{solution}
+
+\begin{problem}{\#5 (12 points)}
+    Describe in English phrases the languages associated with the following regular expressions.
+    \begin{enumerate}[label=\alph*]
+        \item \((a+b)^*a(\Lambda+bbbb)\)
+        \item \((a(a+bb)^*)^*\)
+        \item \(a(aa)^*b(bb)^*\)
+        \item \(((a+b)a)^*\)
+    \end{enumerate}
+\end{problem}
+\vspace{2em}
+\begin{solution}
+    \begin{enumerate}[label=\alph*]
+        \item The set of strings over the alphabet \(\{a,b\}\) that ends with \(a\) or \(bbbb\) and must have at least one \(a\).
+        \item The set of strings over the alphabet \(\{a,b\}\) with any number of a's followed by none or even numbers of \(b\)'s.
+        \item The set of strings over the alphabet \(\{a,b\}\) that contains only odd numbers of \(a\)'s followed by odd numbers of \(b\)'s
+        \item The set of strings over the alphabet \(\{a,b\}\) with any number of \(a\)'s or \(b\)'s ending with an a ($\Lambda$ included)
+    \end{enumerate}
+\end{solution}

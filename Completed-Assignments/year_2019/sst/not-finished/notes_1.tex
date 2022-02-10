@@ -1,0 +1,105 @@
+\documentclass[a4paper]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{textcomp}
+\usepackage[english]{babel}
+\usepackage{amsmath, amssymb}
+
+
+%figure support
+\usepackage{import}
+\usepackage{xifthen}
+\pdfminorversion=7
+\usepackage{pdfpages}
+\usepackage{transparent}
+\newcommand{\incfig}[1]{%
+	\def\svgwidth{\columnwidth}
+	\import{./figures/}{#1.pdf_tex}
+}
+
+\pdfsuppresswarningpagegroup=1
+
+\begin{document}
+	\title{Security Requirements}
+	\maketitle
+	\medskip
+	The software development life cycle:
+	\begin{enumerate}
+		\item Requirement analysis
+			\begin{itemize}
+				\item[--] Security Requirements
+			\end{itemize}
+		\item Design
+			\begin{itemize}
+				\item[--] Misuse Cases / Vulnerability Mapping
+			\end{itemize}
+		\item Construction
+			\begin{itemize}
+				\item[--] Secure Coding Practices
+			\end{itemize}
+		\item Testing
+			\begin{itemize}
+				\item[--] Penetration Testing
+			\end{itemize}
+		\item Installation
+			\begin{itemize}
+				\item[--] Final Security Review
+			\end{itemize}
+		\item Maintenance
+			\begin{itemize}
+				\item[--] Periodic Security Review and Update
+			\end{itemize}
+	\end{enumerate}
+	\\
+	The earlier security is considered, the more likely it is to be implemented well.
+	\section{Gathering Requirements}
+	\begin{description}
+		\item[Requirement] is an outcome for the proposed system, something that it must perform
+			or a quality it must have.
+		\item[Functional Requirement] is something that the system must do.
+		\item[Nonfunctional Requirement] is a quality or constraint for the system; must be upheld.
+		\item[Security Requirement] is an associated protection
+	\end{description}
+
+	\section{Functional and Nonfunctional Security}
+	Asking and answering the following questions will create a well-written requirement:
+	\begin{enumerate}
+		\item Why should this be part of the system?
+		\item What are the constraints on this requirement?
+		\item What are the dependencies on this requirement?
+		\item %fill
+	\end{enumerate}
+
+	\section{Security Requirement}
+	\begin{description}
+		\item[Fail case:] what will happen if the requirement is not fulfilled during operation
+		\item[Consequnce of failure:]
+		\item[Associated risk:]
+	\end{description}
+	\begin{itemize}
+		\item What are the exceptions to the normal case for this requirement?
+		\item that sensitive info is included?
+		\item What are the consequences if the conditions are violated?
+		\item What happens if this requirement is intentionally violated?
+	\end{itemize}
+
+	%fill Example 1
+
+	%fill Example 2
+
+	%fill Example 3
+	
+	\section{Validation}
+	\begin{description}
+		\item[Validation:] is the process of making sure the right system is being built.
+		\item[Validation Testing:] asserting that the needs of the system and stakeholders
+			are being med with the requirements.
+		\item[Tradeoff-analysis:]
+	\end{description}
+
+	%Discussion questions
+
+	%difference between a security requirement and a security metric
+	
+\end{document}

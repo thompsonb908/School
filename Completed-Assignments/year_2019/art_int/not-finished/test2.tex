@@ -1,0 +1,51 @@
+\documentclass[a4paper]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{textcomp}
+\usepackage[english]{babel}
+\usepackage{amsmath, amssymb}
+\usepackage[left=1in,right=1in,top=1in,bottom=1in]{geometry}
+
+%figure support
+\usepackage{import}
+\usepackage{xifthen}
+\pdfminorversion=7
+\usepackage{pdfpages}
+\usepackage{transparent}
+\newcommand{\incfig}[1]{%
+	\def\svgwidth{\columnwidth}
+	\import{./figures/}{#1.pdf_tex}
+}
+\graphicspath{ {./figures/} }
+\pdfsuppresswarningpagegroup=1
+
+\begin{document}
+	\title{CAP.01 Artificial Intelligence Test 2}
+	\author{Brandon Thompson}
+	\maketitle
+
+	\begin{enumerate}
+		\item In the game tree of a two-player turn-taking game, the root is game state after the first player has made the first movement. F
+		\item While guiding a computer to play a two-player turn-taking game, the evaluation function is used to evaluate all nodes within a game tree. F
+		\item While guiding a computer to play a two-player turn-taking game, exhaustively searching a game tree is not necessary. T
+		\item While guiding a computer to play a two-player turn-taking game, cutting off the search of the game tree only at quiescent postilions is a good way to prevent the horizon problem. F
+		\item The alpha-beta pruning will cut a branch from a game tree, if the move along that branch is determined to be worse than another move that has been examined already. T
+		\item In the worst case, the alpha-beta pruning will not cut any branch from the game tree at all. T
+		\item Search can be used to solve problems that are limited by constraints. T
+		\item Forward checking can be used to delete impossible future choices while solving 8-queens problem. T
+		\item Chronological backtracking is suitable for solving constraint satisfaction problems. F
+		\item The least constraint variable is a good technology to speed up the search of constraint satisfaction problems. F
+		\item Meta-heuristics are heuristics that are used to guide other heuristics. T
+		\item Tabu search is a meta-heuristic that would prefer a poor path than repeating a visited path. T
+		\item Ant colony optimization has been successfully applied in routing cables through a communication network. T
+		\item Simulated annealing tends to accept a new state that has higher energy than the current state, if the increase of energy is high. F
+		\item In terms of decision trees, entropy is the indication of how much a data set is purified. F
+		\item In terms of decision trees, the information gain is represented as entropy reduction. T
+		\item In a rule based system, the fact base is like a human's long term memory. F
+		\item While designing an expert system, the knowledge engineer is responsible for writing meta-rules.T
+		\item In terms of expert systems, meta-rules might have a lower priority than ordinary rules. F
+		\item The Rete algorithm is an efficient method to speed up the comparisons between the left-hand side of rules and the contents in the fact base. T
+	\end{enumerate}
+	Given the following game tree, apply minimax algorithm with alpha beta pruning to mark branches that need to be pruned. 
+\end{document}

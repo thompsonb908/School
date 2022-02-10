@@ -1,0 +1,44 @@
+\documentclass[a4paper]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{textcomp}
+\usepackage[english]{babel}
+\usepackage{amsmath, amssymb}
+
+
+%figure support
+\usepackage{import}
+\usepackage{xifthen}
+\pdfminorversion=7
+\usepackage{pdfpages}
+\usepackage{transparent}
+\newcommand{\incfig}[1]{%
+	\def\svgwidth{\columnwidth}
+	\import{./figures/}{#1.pdf_tex}
+}
+\graphicspath{ {./figures/} }
+\pdfsuppresswarningpagegroup=1
+
+\begin{document}
+	\title{Bayseian Networks}
+	\author{Brandon Thompson}
+	\maketitle
+
+	Given the following bayesien Network and probability tables.
+\begin{figure}[ht]
+    This is a custom \LaTeX template!
+    \centering
+   \incfig{network}
+   \caption{network}
+   \label{fig:network}
+\end{figure}
+\begin{center}
+	\[
+	P\left( R !U S !U G \right) = \ldots = P\left( R \right) \times P\left( S\|R \right) \times P\left( G\|S!UR \right)\\
+					     = a\% \times b\% \times d\%\\
+	P\left( \overline{R}!U S !U \overline{G} \right) = \ldots &= P\left( \overline{R} \right) \times P\left( S\|\overline{R} \right) \times P\left( \overline{G}\|S!U \overline{R} \right) \\
+	= \left( 1-a\% \right) \ldots
+\]
+\end{center}
+\end{document}

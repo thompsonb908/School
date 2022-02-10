@@ -1,0 +1,444 @@
+\documentclass[12pt]{article}
+\usepackage[top=1in, bottom=1in, left=1in, right=1in]{geometry}
+%\usepackage[margin=1in]{geometry}
+\usepackage[onehalfspacing]{setspace}
+%\usepackage[doublespacing]{setspace}
+\usepackage{amsmath, amssymb, amsthm}
+\usepackage{enumerate, enumitem}
+\usepackage{fancyhdr, graphicx, proof, comment, multicol}
+\usepackage[none]{hyphenat} % This command prevents hyphenation of words
+\binoppenalty=\maxdimen % This command and the next prevent in-line equation breaks
+\relpenalty=\maxdimen
+%    Good website with common symbols
+% http://www.artofproblemsolving.com/wiki/index.php/LaTeX%3ASymbols
+%    How to change enumeration using enumitem package
+% http://tex.stackexchange.com/questions/129951/enumerate-tag-using-the-alphabet-instead-of-numbers
+%    Quick post on headers
+% http://timmurphy.org/2010/08/07/headers-and-footers-in-latex-using-fancyhdr/
+%    Info on alignat
+% http://tex.stackexchange.com/questions/229799/align-words-next-to-the-numbering
+% http://tex.stackexchange.com/questions/43102/how-to-subtract-two-equations
+%    Text align left-center-right
+% http://tex.stackexchange.com/questions/55472/how-to-make-text-aligned-left-center-right-in-the-same-line
+\usepackage{microtype} % Modifies spacing between letters and words
+\usepackage{mathpazo} % Modifies font. Optional package.
+\usepackage{mdframed} % Required for boxed problems.
+\usepackage{parskip} % Left justifies new paragraphs.
+\linespread{1.1} 
+
+
+\newenvironment{problem}[1]
+{\begin{mdframed}[linewidth=0.6pt]
+        \textsc{Problem #1:}
+
+}
+    {\end{mdframed}}
+
+\newenvironment{solution}
+    {\textsc{Solution:}\\}
+    {\newpage}% puts a new page after the solution
+    
+\newenvironment{statement}[1]
+{\begin{mdframed}[linewidth=0.6pt]
+        \textsc{Statement #1:}
+
+}
+    {\end{mdframed}}
+
+%\newenvironment{prf}
+ %   {\textsc{Proof:}\\}
+ %   {\newpage}% puts a new page after the solution
+
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Q}{\mathbb{Q}}
+
+\begin{document}
+% This is the Header
+% Make sure you update this information!!!!
+\noindent
+\textbf{CEN4088.01} \hfill \textbf{Brandon Thompson} \\
+\normalsize Prof. Elish \hfill Due Date: 12/11/19 \\
+
+% This is where you name your homework
+\begin{center}
+\textbf{Final Review}
+\end{center}
+
+% This is how you call the environment for the statement to be proved.
+
+\section{Designing for Quality}
+\subsection{Industry Frameworks}
+Software design is the most important phase of software development as it is the last chance
+to uncover issues with security and functionality.\\
+Two activities that are conducted during design for functionality are:
+\begin{itemize}
+	\item Static design
+	\item Dynamic design
+\end{itemize}
+\subsubsection{Static Design}
+Notation consists of images, pictures and drawings in the form of UML and wireframe drawings
+or small prototypes.
+\subsubsection{Dynamic Design}
+Dynamic design breaks software requirements into smaller software modules.
+\begin{itemize}
+	\item Application concept
+		\begin{itemize}
+			\item Decomposes the application into separate domains.
+			\item List the concepts that make up the use case.
+			\item Associate the concept by connect concepts using business reasons.
+		\end{itemize}
+	\item Application interaction: how each concept (user, application, resources)
+		interacts with the others.
+	\item Application sequence: System sequence diagrams model the communication between concepts.
+\end{itemize}
+
+\subsection{Organizational Resources}
+Design artifacts (conceptual models, interaction diagrams, sequence diagrams) are not the end of the
+analyst's role. The developer needs to understand these models because they are the last chance to make
+sure you code the right stuff.
+\begin{itemize}
+	\item Collaborate with the analysts
+		\begin{itemize}
+			\item Whiteboard meetings
+				\begin{itemize}
+					\item Provide open communication between analysts and developers.
+					\item Clear definition of prototypes and wireframes.
+					\item clear definition of data access.
+					\item Clear definition of system's sequence of events.
+				\end{itemize}
+			\item Asking the right questions.
+				\begin{itemize}
+					\item Start by asking open ended questions to understand the
+						analyst's vision.
+					\item Next switch to questions about GUIs and get information
+						about the interfaces.
+					\item Finally, get type of transactions that are needed to
+						satisfy the user's request.
+				\end{itemize}
+			\item Finalize the drawing
+				\begin{itemize}
+					\item Design meetings will produce a lot of drawings and notations
+						on the whiteboard.
+					\item Complete UML diagrams and distribute them to everyone.
+				\end{itemize}
+			\item Map the data
+				\begin{itemize}
+					\item Data mapping is the best activity you can do to ensure
+						that you have complete requirements.
+					\item The \textbf{inputs} are the data elements that are coming
+						into the application from another source (screen, input device).
+					\item The \textbf{outputs} are the data elements coming from the
+						application that were requested, updated, or created
+						based on the input request.
+				\end{itemize}
+			\item Map the inputs
+				\begin{itemize}
+					\item Developer need to define every input parameter. Input
+						cleansing is the key for secure code.
+				\end{itemize}
+			\item Map the outputs
+				\begin{itemize}
+					\item Determining if the data exists
+						\begin{itemize}
+							\item Wireframe or printout of the report that
+								is to be created, check off all output
+								data elements that are required.
+						\end{itemize}
+					\item Designing the queries
+						\begin{itemize}
+							\item Writing SQL may not be an option in all
+								environments.
+							\item Querying the database is the only method
+								possible that will identify if all the
+								tables and columns are needed to satisfy
+								the requirement.
+							\item Designing query now reduces development time and
+								makes sure you have all necessary inputs.
+						\end{itemize}
+					\item How to execute the query
+						\begin{itemize}
+							\item Dynamic SQL is the ability to have create a
+								SQL query based on a list of inputs.
+							\item Static SQL is hard-coded SQL.
+						\end{itemize}
+					\item Justify the cost of running each query
+						\begin{itemize}
+							\item Designing the queries so that they perform
+								acceptably in the database is a developer's
+								responsibility.
+							\item Measure database CPU time or MIPS (million
+								instructions per second).
+						\end{itemize}
+				\end{itemize}
+		\end{itemize}
+\end{itemize}
+\subsection{Quality in the Cube}
+Last call with business analyst is to make sure all business logic is intact, make sure there is a
+universal understanding of the business requirements, update the system documentation and print
+the documentation.
+\begin{itemize}
+	\item Business logic bridging the GUIs to the Database
+		\begin{itemize}
+			\item All requirements are written down (sometimes to much information can
+				can be to much information.
+			\item human factors are the primary causes of design disasters.
+			\item Understand everything about the application before you design it.
+		\end{itemize}
+	\item Universal Understanding
+		\begin{itemize}
+			\item Form requirements into simple logical statements of expectation so that
+				anybody who reads the instructions will be able to understand the
+				requirements.
+		\end{itemize}
+	\item Updating the system documentation
+		\begin{itemize}
+			\item Done!
+			\item Print wireframes, database schemas, and the final use case.
+		\end{itemize}
+\end{itemize}
+\subsection{Summary}
+\begin{itemize}
+	\item Software design is the most important phase of software development
+	\item Static design activities are used to help the analyst and the developer understand
+		the overall application and the software requirements.
+	\item Dynamic design activities produce documentation that is used to describe the behavior
+		and interaction of systems and components.
+	\item Human factors are the primary cause of design disasters
+\end{itemize}
+
+\section{Designing for Security}
+\subsection{Industry Patterns}
+\begin{itemize}
+	\item First define what it is you are securing
+		\begin{itemize}
+			\item What software modules need to be created?
+			\item What other programs will use those modules and how?
+			\item What types of properties go into those modules?
+		\end{itemize}
+	\item Separate use cases by unit of work (function)
+		\begin{itemize}
+			\item UML diagrams provide visual representation of the software so that
+				each use case can be broken down and analyzed for common secure 
+				design patterns and reusable components.
+			\item Secure requirements include the use of SSL and/or digital certificates.
+		\end{itemize}
+	\item Secure design activities are
+		\begin{itemize}
+			\item Interaction diagrams.
+				\begin{itemize}
+					\item Focus on how the software objects interact with themselves
+						and other objects.
+					\item Interaction diagrams are the most important artifacts in
+						design because they are the specifications to class diagrams.
+					\item Document what is being communicated between objects.
+					\item Messages link objects and show what objects are being called,
+						what is being communicated and returned.
+				\end{itemize}
+			\item Class diagrams in UML.
+				\begin{itemize}
+					\item Software requirements specifications for each module in an
+						application.
+					\item Documents \textbf{Properties} and \textbf{Methods}.
+				\end{itemize}
+
+			\item The printing of the final design for development.
+		\end{itemize}
+	\item Organizational regulations for implementing security.
+		\begin{itemize}
+			\item Data transmitted
+				\begin{itemize}
+					\item Data is sanitized.
+					\item Double check before use.
+					\item \textbf{Because most applications need to be web enabled,
+						the main protocol to work with is HTTP and TCP/IP}
+					\item Secure data by using:
+						\begin{itemize}
+							\item \textbf{Secure Socket Layer (SSL)}
+							\item \textbf{Code Signing}
+							\item \textbf{Personal Digital Certificates}
+							\item \textbf{Two-factor Authentication}
+						\end{itemize}
+				\end{itemize}
+		\end{itemize}
+	\item Autonomous Team Decisions
+		\begin{itemize}
+			\item Client-Side Validation
+				\begin{itemize}
+					\item Browser executes code on the fly before sending data to
+						the server.
+					\item Advantages:
+						\begin{itemize}
+							\item Data can be validated before being sent to
+								the server.
+							\item Works well with DHTML.
+						\end{itemize}
+					\item Disadvantages:
+						\begin{itemize}
+							\item JavaScript can be disabled.
+							\item Hard to maintain and debug.
+							\item Allows users to view validation.
+						\end{itemize}
+				\end{itemize}
+			\item Server-Side Validation
+				\begin{itemize}
+					\item Browser transmits data data via HTTP to the server so that a
+						server side language can validate the data.
+					\item Advantages:
+						\begin{itemize}
+							\item Logic stored on server.
+							\item Input data can be validated using database,
+								session or other server attributes.
+						\end{itemize}
+					\item Disadvantages
+						\begin{itemize}
+							\item Page requests for form submittal.
+							\item Unnecessary trips to server.
+						\end{itemize}
+				\end{itemize}
+		\end{itemize}
+	\item SQL Injection
+\end{itemize}
+
+
+\section{Java: Secure Coding Practices}
+\begin{itemize}
+	\item Rule 1: Ensure Sensitive data is kept secure
+	\item Rule 2: Detect and handle file-related errors
+	\item Rule 3: Generate strong random numbers
+	\item Rule 4: Do not use \verb|Object.equals()| method to compare two arrays.\\
+		Use \verb|Arrays.equals()| instead.
+	\item Rule 5: Validate method arguments
+	\item Rule 6: Avoid division by zero errors
+	\item Rule 7: Do not attempt comparisons with \verb|Double.NaN|\\
+		Instead use \verb|Double.isNaN()|.
+	\item Rule 8: Limit accessibility of fields (private data fields)
+\end{itemize}
+
+\section{Testing For Quality and Security}
+\subsection{Concepts and Definitions}
+Run a battery of test cases with multiple techniques against a specific use case
+to evaluate if the test case will pass or fail.
+\begin{itemize}
+	\item What Testing and Assurance are:
+		\begin{itemize}
+			\item Software testing is the discipline of examining the functionality
+				of application software to determine whether it meets the
+				requirements (Verification) and satisfy the need (validation).
+			\item Software assurance (SwA) is ho effective security is tested and
+				implemented within the software.
+		\end{itemize}
+	\item What testing is not:
+		\begin{itemize}
+			\item Security measure
+			\item Quality measure
+			\item Earlier testing is done the cheaper it is to fix.
+		\end{itemize}
+	\item Test Plan
+		\begin{itemize}
+			\item How testing should be performed.
+			\item Who executes the testing.
+			\item when testing starts / ends.
+			\item define test scripts.
+			\item define user community
+			\item Identify internal resources.
+			\item Identify external resources.
+		\end{itemize}
+	\item Problems with testing in the industry
+		\begin{itemize}
+			\item Phase that is most looked over because of budget / time constraints.
+			\item To much reliance on individual skills
+			\item Unpredictable users.
+		\end{itemize}
+\end{itemize}
+\subsection{Dynamic testing in the Organization}
+Executing the current use case using valid inputs and then comparing the real results with expected
+results for pass or failure.
+\begin{itemize}
+	\item Unit testing
+		\begin{itemize}
+			\item Lowest level
+			\item exception handling: manually going into source code and forcing an 
+				error or attack.
+			\item Reviewing error logs
+		\end{itemize}
+	\item Integration testing
+		\begin{itemize}
+			\item two or more modules are linked together and tested
+			\item Required testing the while use case rather than an individual piece of
+				software.
+		\end{itemize}
+	\item System testing
+		\begin{itemize}
+			\item Complete front-to-back execution of the entire application.
+			\item Each new use case that is added to the system must be tested for quality
+				features (reliability, usability) and security.
+		\end{itemize}
+	\item Fuzz testing 
+		\begin{itemize}
+			\item Feeds random input data into applications to see hat happens.
+		\end{itemize}
+	\item Reliability testing
+		\begin{itemize}
+			\item Application should produce correct results despite being under attack.
+			\item requires simulation tools to replicate number of expected uses, time of day,
+				and software environment as if it  was the real world.
+		\end{itemize}
+\end{itemize}
+\subsection{Static Testing}
+Way of evaluating the code without executing the application. Does not evaluate performance.
+\begin{itemize}
+	\item Static code analysis
+	\item Code review and inspections
+	\item System documentation.
+\end{itemize}
+\section{Encryption and Password cracking}
+\begin{itemize}
+	\item Symmetric Key Encryption
+		\begin{itemize}
+			\item Uses same key to encrypt and decrypt data.
+			\item inherent vulnerability in that key must be transmitted.
+			\item faster than asymmetric key algorithms.
+		\end{itemize}
+	\item Asymmetric Key Algorithms
+		\begin{itemize}
+			\item Public key algorithms
+			\item two keys for encrypting and decrypting
+		\end{itemize}
+\end{itemize}
+%\begin{statement}{\#1}
+%Prove that    
+%\begin{equation}
+%\label{bree}
+%    1 + 2 + 3+...+ n = \sum_{k=1}^n k = \frac{n(n+1)}{2}.
+%\end{equation}
+%\end{statement}
+
+%% This is how you call the proof environment
+%\begin{proof}
+%We would like to prove that $ \sum_{k=1}^n k = \frac{n(n+1}{2}$ so we proceed by induction. \\
+%
+%\textbf{Base Case}. For $n = 1$ we see that the left hand side of (\ref{bree}) is 1 whereas the right hand side is given by 
+%$$ \frac{1(1+1)}{2}= 1. $$
+%as well. Hence the statement is true for $n =1$ \\
+%
+%\textbf{Induction Case}. Assume that the statement holds for n+1, that is we need to show that
+%\begin{align*}
+% 1 + 2 + 3 + \dotsc + n + (n+1) &= \frac{(n+1)((n+1)+1)}{2} \\
+% & = \frac{(n+1)(n+2)}{2}
+%\end{align*}
+%Thus we will begin with the left hand side of (\ref{bree}) to reach our conclusion. By our assumption we know that 
+%$$ 1 + 2 + 3 + \dotsc + n + (n+1) = \frac{n(n+1)}{2} + (n+1)
+%$$
+%Thus we use a bit of algebra as follows to reach our conclusion: 
+%\begin{align*}
+%    1 + 2 + 3 + \dotsc + n+ (n+1) & = \frac{n(n+1)}{2}+ (n+1) \\ 
+%    & = \frac{n(n+1)}{2} + \frac{2(n+1)}{2} \\
+%    & = \frac{(n+1)(n+2)}{2}.
+%\end{align*}
+%Thus by induction we see that statement (\ref{bree}) is true.
+%
+%\end{proof}
+\end{document}

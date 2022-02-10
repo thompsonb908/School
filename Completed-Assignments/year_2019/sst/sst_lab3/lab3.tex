@@ -1,0 +1,111 @@
+\documentclass[a4paper]{article}
+
+\usepackage{indentfirst}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{textcomp}
+\usepackage[english]{babel}
+\usepackage{amsmath, amssymb}
+\usepackage{url}
+
+%figure support
+\usepackage{import}
+\usepackage{xifthen}
+\pdfminorversion=7
+\usepackage{pdfpages}
+\usepackage{transparent}
+\newcommand{\incfig}[1]{%
+	\def\svgwidth{\columnwidth}
+	\import{./figures/}{#1.pdf_tex}
+}
+
+\pdfsuppresswarningpagegroup=1
+
+\begin{document}
+	\title{Lab 3: CEN4048 Due xx/xx/19}
+	\author{Brandon Thompson 5517}
+	\maketitle
+	\medskip
+	\section{Section 1 Images}
+	%images up to 1.3
+
+	\section{Section 1 Research Report}
+	\subsection{Executive Summary}
+	
+	The websites \url{x128bit.com}, \url{iskytap.com} and \url{cloudparadox.com} are
+	managed by the same people because the registered administrator is the same for all
+	three. An attacker could use this because weaknesses in one could be used in another,
+	\url{x128bit.com} and \url{iskytap.com} are less secure than \url{cloudparadox.com}.
+
+	Amazon being a large e-commerce company will be difficult to attack because they put
+	so much effort into defending against it and verifying transactions. That being said
+	because of the number of employees in the company they are more susceptible to social
+	engineering attacks.
+
+	\subsection{Methodology}
+	The technical research involved the use of the Sam Spade tool to provide domain information
+	from multiple sources about the site in question. The Sam Spade tool can also ping the
+	site. The technical research also utilized the \texttt{nslookup} tool from the command
+	prompt. \texttt{Nslookup} is used for DNS queries to provide associated IP addresses
+	for a domain. The last tool used in this section is the \texttt{tracert} (traceroute) tool.
+	Traceroute gives a list of names and IP addresses of all intermediate systems between the
+	target and caller. This can provide additional attack points or the geographic location
+	of the target system.
+	
+	\subsection{Technical Research Results}
+	
+	\subsubsection{\url{x128bit.com}}
+	The Sam Spade tool provided the email address (\texttt{shulbert@securitycentric.net}) and phone number
+	(+1 (925) 292-4309) of the registered administrator.Using the ping tool of Sam Spade provides 10 pings
+	to the IP address \texttt{208.91.197.27}. The \texttt{nslookup} tool showed that there
+	were no additional IP addresses associated. Traceroute gave 14 intermediary servers between
+	the virtual machine and the target.
+	
+	\subsubsection{\url{iskytap.com}}
+	\url{Iskytap.com} has the same information as the previous \url{x128bit.com}.	
+	
+	\subsubsection{\url{cloudparadox.com}}
+	Sam Spade tool was unable to ping \url{cloudparadox.com} at IP address \texttt{50.225.131.227}.
+	\texttt{Nslookup} provided no alternative IP addresses, traceroute timed out after jumping
+	the $17^{\text{th}}$  time at \texttt{162.151.79.166}.
+
+	\subsection{Public Domain Research Results}
+	\label{PDR1}
+	The organization that i decided to target is Amazon because they are a large e-commerce
+	site and I use them often. The domain name is \url{amazon.com} and they use the same URL
+	for their online sales. They physical address is listed as 410 Terry Avenue North Seattle,
+	Washington 98109-5210, but they are planning to expand to another building soon. There are 10
+	officers of the company, the CEO being Jeffrey Bezos, with 7 senior vice presidents and 2
+	vice presidents. Amazon employs over 600,000 people, 15,000 of those are corporate employees
+	in 40 different locations. Amazon also owns more than 40 subsidiaries including \url{audible.com},
+	\url{A9.com}, Goodreads, Ring and \url{twitch.com}.
+
+	\subsection{Findings and Conclusions}
+	\url{X128bit.com} and \url{iskytap.com} could be vulnerable to attackers because we were able to
+	ping the server multiple times and follow a traceroute to the home system. \url{Cloudparadox.com}
+	is more secure because it does not allow pings and we could not follow the trace back. Amazon,
+	being such a large company with almost all business going through the internet, probably has a 
+	lot of security in place, but the large amount of employees means they are susceptible to social
+	engineering attacks.
+	
+	\subsection{Avenues of Future Research}
+	Additional research into the companies would include how secure the physical building is for
+	social engineering attacks or physical attacks. If i was planning a hack into these companies
+	I would ask questions like how would they defend against \underline{\ \ \ \ \ \ \ \ \ \ \ \ \ }
+	or what is the best method to gain access to the system.
+	
+	\section{Section 2 Research Report}
+	\subsection{Executive Summary}
+	
+	\subsection{Methodology}
+
+	\subsection{Technical Research Results}
+	
+	\subsection{Public Domain Research Results}
+	Target organization if Amazon, all info is the same as Section 1 Research Report \ref{PDR1	Target organization if Amazon, all info is the same as Section 1 Research Report \ref{PDR1}}
+	\subsection{Findings and Conclusions}
+
+	\subsection{Avenues of Further Research}
+
+
+\end{document}

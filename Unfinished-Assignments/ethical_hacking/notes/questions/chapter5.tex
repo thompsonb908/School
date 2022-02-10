@@ -1,0 +1,70 @@
+\subsection{Multiple Choice Questions}
+\begin{enumerate}
+    \item Which of the following is used for banner grabbing? \textbf{\left( Telnet \right)}
+    \item Which of the following is used to perform customized network scans? \textbf{\left( nmap \right)}
+    \item Which of the following is not a flag on a packet? \textbf{\left( END \right)}
+    \item An SYN attack uses which protocol? \textbf{\left( TCP \right))}
+    \item Why is it important to scan your target network slowly? \textbf{\left( To avoid alerting the IDS \right))}
+    \item Which of the following types of attack has no flags set? \textbf{\left( NULL \right))}
+    \item What is missing from a half-open scan? \textbf{\left( SYN-ACK \right))}
+    \item During an FIN scan, what indicates that a port is closed? \textbf{\left( RST \right))}
+    \item During a Xmas tree scan what indicates a port is closed? \textbf{\left( RST \right))}
+    \item What is the three-way handshake? \textbf{\left( The opening sequence of a TCP connection \right))}
+    \item A full-open scan means that the three-way handshake has been completed. What is the difference between this and a half-open scan? \textbf{\left( A half-open scan does not include the final ACK \right))}
+    \item What is an ICMP echo scan? \textbf{\left( A ping sweep \right))}
+    \item hacker is conducting the following on the target workstation: nmap-sT 192.33.10.5. The attacker is in which phase? \textbf{\left( Scanning and enumeration \right))}
+    \item Which best describes a vulnerability scan? \textbf{\left( A way to automate the discovery of weaknesses \right))}
+    \item What is Tor used for? \textbf{\left( To hide web browsing \right))}
+    \item Why would you need to use a proxy to perform scanning? \textbf{\left( To enhance anonymity \right))}
+    \item A vulnerability scan is a good way to do what? \textbf{\left( Find weaknesses \right))}
+    \item A banner can do what? \textbf{\left( Identify a service \right))}
+    \item nmap is required to perform what type of scan? \textbf{\left( Port scan \right))}
+    \item Why would an attacker conduct an open TCP connection scan using Ncat? \textbf{\left( The attacker is trying to see what ports are open for connection. \right))}
+    \item Which of the following actions is the last step in scanning a target? \textbf{\left( Scan for vulnerabilities \right))}
+    \item What is war dialing? \textbf{\left( An adversary dialing to see what modems are open \right))}
+    \item What protocol would you use to conduct banner grabbing? \textbf{\left( Telnet \right))}
+    \item What is the maximum byte size for a TCP packet? (i.e.\ MTU -Maximum transmission unit) \textbf{\left( 1,500 \right))}
+    \item Using Nmap, which switch command enables a UDP connections scan of a host? \textbf{(\verb|-sU|)}
+    \item Using Nmap, what is the correct command to scan a target subnet of 192.168.0.0/24 using a ping sweep and identifying the operating system? \textbf{\left( \verb|nmap -sP -O 192.168.0.0/24| \right))}
+    \item When trying to identify all the workstations on a subnet, what method might you choose? \textbf{\left( Ping sweep \right))}
+    \item Which \verb|nmap| switch utilizes the slowest scan \textbf{\left( \verb|-T| \right))}
+    \item Which switch in \verb|nmap| allows the user to perform a fast scan? \textbf{\left( \verb|-T4| \right))}
+    \item What would be the purpose of running a ping sweep? \textbf{\left( You want to identify responsive hosts without a port scan.
+    You want to use something that is light on network traffic.
+    You want to use a protocol that may be allowed through the firewall. \right))}
+\end{enumerate}
+
+\subsection{Brief Explanation Questions}
+\begin{enumerate}
+    \item Describe types of scanning
+    \begin{enumerate}
+        \item Port Scanning: Sending crafted packets to a target with the intent of learning about port status.
+        \item Network Scanning: designed to locate live hosts on a network.
+        \item Vulnerability Scanning: Used to identify weaknesses or vulnerabilities on a target system.
+    \end{enumerate}
+    \item Describe any three types of port scan with example:
+    \begin{enumerate}
+        \item Full-open scan: completes a three-way TCP handshake. Incomplete handshake indicates that the port is closed. Gives the most accurate picture of port status, also the easiest logged. \verb|nmap -sT 192.168.1.10|
+        \item Half-scan does not complete the entire TCP handshake, is faster and less logged than the full-scan. \verb|nmap -sS 192.168.1.10|
+        \item FIN scan sets the FIN flag of the TCP packet. No response means the port is open, if a RST flag is received, the port is closed. \verb|nmap -sF 192.168.1.10|
+    \end{enumerate}
+    \item List TCP flags and explain what its purpose:
+    \begin{itemize}
+        \item SYN: Used to initiate a connection.
+        \item ACK: used to acknowledge the receipt of a packet.
+        \item URG: States that the data contained in the packet should be processed immediately.
+        \item PSH: Instructs the sending system to send all buffered data immediately.
+        \item FIN: Tells the remote system that no more information will be sent.
+        \item RST: Represents a reset packet to reset a connection.
+    \end{itemize}
+    \item Network scanning in detail
+    \begin{itemize}
+        \item Network scanning is checking for live hosts on the network.
+        This mainly uses ping tools that utilize ICMP echo requests and wait for replies. \verb|nmap| can be used to ping sweep a range of IPs.
+    \end{itemize}
+    \item Explain packet crafting with example.
+    \begin{itemize}
+        \item Packet crafting is used when you need to manipulate headers with data that wouldn't normally be found in header fields.
+        \item \verb|hping3 -A 192.169.1.10 -p 80|
+    \end{itemize}
+\end{enumerate}
