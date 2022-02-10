@@ -1,0 +1,15 @@
+[submodule "RecipiesByIngredients"]
+	path = RecipiesByIngredients
+	url = https://github.com/thompsonb908/RecipiesByIngredients.git
+[submodule "Machine-Learning-Mini-Projects"]
+	path = Machine-Learning-Mini-Projects
+	url = https://github.com/thompsonb908/Machine-Learning-Mini-Projects
+[submodule "SeniorDesign"]
+	path = SeniorDesign
+	url = https://github.com/thompsonb908/SeniorDesign.git
+[submodule "OSConcepts_Assignment2"]
+	path = OSConcepts_Assignment2
+	url = https://github.com/thompsonb908/OSConcepts_Assignment2.git
+[submodule "OS-Concepts"]
+	path = OS-Concepts
+	url = https://github.com/thompsonb908/OS-Concepts.git
